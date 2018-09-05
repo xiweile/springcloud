@@ -4,23 +4,17 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.weiller</groupId>
-	<artifactId>springcloud</artifactId>
+	<artifactId>springcloud-registry</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
+	<packaging>jar</packaging>
 
-	<name>springcloud</name>
-	<description>base</description>
-	<modules>
-		<module>springcloud-product</module>
-		<module>springcloud-registry</module>
-		<module>springcloud-auth</module>
-		<module>springcloud-utils</module>
-		<module>springcloud-config</module>
-	</modules>
+	<name>springcloud-registry</name>
+	<description>springcloud-registry</description>
+
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.3.RELEASE</version>
+		<groupId>com.weiller</groupId>
+		<artifactId>springcloud</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -28,7 +22,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<project.version>0.0.1-SNAPSHOT</project.version>
+		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
 	</properties>
 
 	<dependencyManagement>
@@ -42,6 +36,12 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<plugins>

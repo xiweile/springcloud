@@ -4,23 +4,17 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.weiller</groupId>
-	<artifactId>springcloud</artifactId>
+	<artifactId>springcloud-config</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
+	<packaging>jar</packaging>
 
-	<name>springcloud</name>
-	<description>base</description>
-	<modules>
-		<module>springcloud-product</module>
-		<module>springcloud-registry</module>
-		<module>springcloud-auth</module>
-		<module>springcloud-utils</module>
-		<module>springcloud-config</module>
-	</modules>
+	<name>springcloud-config</name>
+	<description>springcloud-config</description>
+
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.3.RELEASE</version>
+		<groupId>com.weiller</groupId>
+		<artifactId>springcloud</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -28,9 +22,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<project.version>0.0.1-SNAPSHOT</project.version>
+		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
 	</properties>
-
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -42,12 +35,40 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-config-server</artifactId>
+		</dependency>
+
+	</dependencies>
 
 	<build>
+		<resources>
+			<resource>
+				<!--允许扫描该路径下的资源文件-->
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<delimiters>
+						<!--指定动态获取以$标志开头结尾的信息-->
+						<delimit>$</delimit>
+					</delimiters>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
