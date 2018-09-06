@@ -1,7 +1,7 @@
-package com.weiller.config.hello.controller;
+package com.weiller.auth.hello.controller;
 
 
-import com.weiller.config.hello.service.HelloService;
+import com.weiller.auth.hello.service.HelloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;

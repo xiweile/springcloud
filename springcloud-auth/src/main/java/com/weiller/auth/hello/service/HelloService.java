@@ -1,6 +1,6 @@
-package com.weiller.config.hello.service;
+package com.weiller.auth.hello.service;
 
-import com.weiller.config.hello.entity.Msg;
+import com.weiller.utils.model.Msg;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

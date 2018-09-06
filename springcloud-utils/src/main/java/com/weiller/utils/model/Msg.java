@@ -1,4 +1,4 @@
-package com.weiller.config.hello.entity;
+package com.weiller.utils.model;
 
 import lombok.Data;
 
@@ -7,9 +7,8 @@ public class Msg {
 
     private String code;
 
-    private boolean isSuccess;
-
     private String msg;
 
-    private Object obj;
+    private Object data;
+
 }

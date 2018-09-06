@@ -4,9 +4,11 @@ spring:
   cloud:
     config:
       server:
-        encrypt.enabled: true
         git:
           uri: https://github.com/xiweile/springcloud.git
           searchPaths: springcloud-config-repo/authservice
           username: xiweile
           password: xwl8416655
+          clone-on-start: true
+        encrypt:
+          enabled: false
