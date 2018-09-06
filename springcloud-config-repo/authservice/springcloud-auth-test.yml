@@ -1,0 +1,40 @@
+server:
+  port: 9001
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+  instance:
+    instance-id: springcloud-auth	#修改别名
+    prefer-ip-address: true		    #显示IP地址
+
+info:
+  author: weiller
+  service-url: http://localhost:$server.port$/
+
+spring:
+  profiles: dev
+  application:
+    name: springcloud-auth
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/demo?useSSL=false
+    username: root
+    password: xiweile
+    driverClassName: com.mysql.jdbc.Driver
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 20
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+  thymeleaf:
+    enabled: true
+    encoding: utf-8
+    cache: false
