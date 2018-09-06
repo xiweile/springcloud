@@ -17,7 +17,7 @@ spring:
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/demo?useSSL=false
     username: root
-    password: xiweile
+    password: {cipher}001cd4915f43cc7b9ecd75018aee139817c89e118ea96b4f8a7edd70a8734637
     driverClassName: com.mysql.jdbc.Driver
     hikari:
       minimum-idle: 5
