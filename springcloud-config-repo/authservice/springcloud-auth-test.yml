@@ -14,9 +14,6 @@ info:
   service-url: http://localhost:$server.port$/
 
 spring:
-  profiles: dev
-  application:
-    name: springcloud-auth
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/demo?useSSL=false
     username: root
