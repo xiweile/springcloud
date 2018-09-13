@@ -1,5 +1,6 @@
 package com.weiller.product.hello;
 
+import com.weiller.api.auth.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.ribbon.RibbonClientName;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +16,16 @@ public class HelloController {
     @Autowired
     RestTemplate restTemplate;
 
+    @Autowired
+    UserService userService;
+
     @GetMapping("/hello/get")
     public Object consumerHello(){
         return restTemplate.getForObject("http://"+name+"/hello/get",Object.class);
+    }
+
+    @GetMapping("/remote/user/list")
+    public Object getUser(){
+        return userService.getList();
     }
 }

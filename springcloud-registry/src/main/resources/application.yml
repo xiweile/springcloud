@@ -4,9 +4,10 @@ server:
 eureka:
   instance:
     hostname: localhost
+    prefer-ip-address: true # 注册服务的IP，而非服务名称
   client:
-    register-with-eureka: false
-    fetch-registry: false
+    register-with-eureka: false # 向Euraka注册服务
+    fetch-registry: true   # 拉取注册表的本地副本
     service-url:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
       #defaultZone: http://eureka7002.com:7002/eureka/

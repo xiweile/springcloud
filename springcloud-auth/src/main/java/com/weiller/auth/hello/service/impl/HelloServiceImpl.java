@@ -1,6 +1,6 @@
 package com.weiller.auth.hello.service.impl;
 
-import com.weiller.auth.hello.service.HelloService;
+import com.weiller.auth.hello.service.IHelloService;
 import com.weiller.utils.model.Msg;
 import com.weiller.utils.model.MsgCode;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class HelloServiceImpl implements HelloService{
+public class HelloServiceImpl implements IHelloService {
 
     @Value("${server.port}")
     private String port;

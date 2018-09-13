@@ -1,5 +1,6 @@
 package com.weiller.auth.hello.controller;
 
+import com.weiller.api.auth.UserService;
 import com.weiller.auth.hello.entity.User;
 import com.weiller.auth.hello.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import reactor.util.function.Tuple2;
 import reactor.util.function.Tuples;
 
 @RestController
-public class UserController {
+public class UserController implements UserService{
 
     @Autowired
     private IUserService iUserService;
