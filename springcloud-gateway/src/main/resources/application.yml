@@ -4,6 +4,7 @@ spring:
   application:
     name: springcloud-gateway
 zuul:
+  prefix: /
   routes:
     auth:
       path: /auth/**
@@ -11,4 +12,18 @@ zuul:
     product:
       path: /product/**
       url: springcloud-product
+  ignored-patterns:
+  add-host-header: true
+  retryable: false
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+  instance:
+    instance-id: springcloud-gateway	#修改别名
+    prefer-ip-address: true		    #显示IP地址
 
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+ribbon:
+  ConnectTimeout: 3000
+  ReadTimeout: 50000

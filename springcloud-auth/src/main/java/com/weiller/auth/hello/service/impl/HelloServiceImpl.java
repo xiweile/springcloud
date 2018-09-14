@@ -16,11 +16,14 @@ public class HelloServiceImpl implements IHelloService {
     @Value("${server.port}")
     private String port;
 
+    @Value("${info.author}")
+    private String author;
+
     @Override
     public Mono<Msg> sayOnce() {
         Msg msg = new Msg();
         msg.setCode(MsgCode.SUCCESS.getCode());
-        msg.setMsg("hello world ,I am privider "+port);
+        msg.setMsg("hello world ,I am privider "+port +" author :" +author);
         return MonoOperator.just(msg);
     }
 
@@ -28,10 +31,10 @@ public class HelloServiceImpl implements IHelloService {
     public Flux<Msg> saySome() {
         Msg msg1 = new Msg();
         msg1.setCode("200");
-        msg1.setMsg("hello world 2018");
+        msg1.setMsg("hello world 2018"+" author :" +author);
         Msg msg2 = new Msg();
         msg2.setCode("200");
-        msg2.setMsg("hello world 2019");
+        msg2.setMsg("hello world 2019"+" author :" +author);
         List<Msg> list = new ArrayList<>();
         list.add(msg1);
         list.add(msg2);

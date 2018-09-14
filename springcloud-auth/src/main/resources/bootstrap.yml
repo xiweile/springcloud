@@ -2,8 +2,8 @@ spring:
   application:
     name: springcloud-auth
   profiles:
-    active: test
+    active: dev
   cloud:
     config:
-      uri: http://localhost:8888
       label: develop
+      uri: http://localhost:8888
