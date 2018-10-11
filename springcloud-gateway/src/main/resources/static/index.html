@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>未登录页</title>
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript">
+        function login() {
+            $.ajax({
+                type:'POST',
+                url: "/login",
+                async:false,
+                dataType: 'json',
+                //contentType: 'application/json',
+                data: params ,
+                success:function(r){
+                    if(r.code === "200"){
+
+
+                    }else{
+                        alert(r.msg);
+                    }
+
+                }
+            });
+
+        }
+    </script>
+</head>
+
+<body>
+    <form onclick="return false">
+        <div>
+            <input type="text" name="username">
+        </div>
+        <div>
+            <input type="password" name="password">
+        </div>
+        <button onclick="login()">登录</button>
+    </form>
+</body>
+</html>

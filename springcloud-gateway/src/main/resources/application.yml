@@ -15,6 +15,7 @@ zuul:
   ignored-patterns:
   add-host-header: true
   retryable: false
+
 eureka:
   client:
     service-url:
@@ -22,6 +23,8 @@ eureka:
   instance:
     instance-id: springcloud-gateway	#修改别名
     prefer-ip-address: true		    #显示IP地址
+
+filter.path.ignores: /login,/logout
 
 hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
 ribbon:

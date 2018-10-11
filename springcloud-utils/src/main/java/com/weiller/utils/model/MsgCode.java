@@ -7,8 +7,9 @@ package com.weiller.utils.model;
 public enum  MsgCode {
 
     SUCCESS("200","响应成功"),
-    ERROR("500","响应失败");
+    ERROR("500","响应失败"),
 
+    AUTH_INVALID("10001","身份验证无效");
 
     private String code;
 
