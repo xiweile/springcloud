@@ -1,4 +1,4 @@
-package com.weiller.auth.hello.service;
+package com.weiller.auth.service;
 
 import com.weiller.utils.model.Msg;
 import reactor.core.publisher.Flux;

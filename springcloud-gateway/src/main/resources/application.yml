@@ -3,6 +3,18 @@ server:
 spring:
   application:
     name: springcloud-gateway
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-active: 8 #最大连接数
+        max-wait: -1  #最大阻塞等待时间(负数表示没限制)
+        max-idle: 8   #最大空闲数
+        min-idle: 0   #最小空闲数
+    timeout: 10000
 zuul:
   prefix: /
   routes:
@@ -12,6 +24,7 @@ zuul:
     product:
       path: /product/**
       url: springcloud-product
+  sensitive-headers: ''
   ignored-patterns:
   add-host-header: true
   retryable: false
@@ -30,3 +43,5 @@ hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
 ribbon:
   ConnectTimeout: 3000
   ReadTimeout: 50000
+
+session.redis.duetime: 1 #单位分钟

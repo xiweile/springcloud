@@ -1,6 +1,6 @@
-package com.weiller.auth.hello.service.impl;
+package com.weiller.auth.service.impl;
 
-import com.weiller.auth.hello.service.IHelloService;
+import com.weiller.auth.service.IHelloService;
 import com.weiller.utils.model.Msg;
 import com.weiller.utils.model.MsgCode;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,9 +1,9 @@
-package com.weiller.auth.hello.controller;
+package com.weiller.auth.controller;
 
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
-import com.weiller.auth.hello.service.IHelloService;
+import com.weiller.auth.service.IHelloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;

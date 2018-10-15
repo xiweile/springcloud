@@ -1,6 +1,6 @@
 package com.weiller.product.hello;
 
-import com.weiller.api.auth.UserService;
+import com.weiller.api.auth.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.ribbon.RibbonClientName;
 import org.springframework.web.bind.annotation.GetMapping;

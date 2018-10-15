@@ -35,3 +35,5 @@ spring:
     enabled: true
     encoding: utf-8
     cache: false
+
+session.redis.duetime: 1 #单位分钟

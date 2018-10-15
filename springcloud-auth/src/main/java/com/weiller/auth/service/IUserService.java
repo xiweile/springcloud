@@ -1,6 +1,6 @@
-package com.weiller.auth.hello.service;
+package com.weiller.auth.service;
 
-import com.weiller.auth.hello.entity.User;
+import com.weiller.auth.entity.User;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -15,6 +15,8 @@ public interface IUserService {
      Flux<User> getByIds(Flux<Integer> ids);
 
      Mono<User> getById(Integer id);
+
+     User getByUsernameAndPassword(User user);
 
      Mono<User> createOrUpdate( User  user);
 

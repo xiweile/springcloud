@@ -3,8 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>主页面</title>
+
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript">
+        function authFlush() {
+            $.ajax({
+                type:'GET',
+                url: "/auth/online",
+                async:false,
+                //dataType: 'json',
+                //contentType: 'application/json',
+                //data: params ,
+                success:function(r){
+                    if(r.code === "200"){
+                        // 在线
+                        window.location.href = "/pages/main.html";
+                    }else{
+                        // 离线
+                        window.location.href = "/index.html";
+                    }
+
+                }
+            });
+        }
+        $(function () {
+            authFlush();
+        })
+    </script>
 </head>
 <body>
-
+<h3>我是主页面</h3>
 </body>
 </html>

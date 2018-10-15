@@ -9,33 +9,33 @@
         function login() {
             $.ajax({
                 type:'POST',
-                url: "/login",
+                url: "/auth/login",
                 async:false,
                 dataType: 'json',
-                //contentType: 'application/json',
-                data: params ,
+                contentType: 'application/json',
+                data: JSON.stringify({"username":$('#username').val(),"password":$('#password').val()}) ,
                 success:function(r){
                     if(r.code === "200"){
-
-
+                        // 在线
+                        window.location.href = "/pages/main.html";
                     }else{
                         alert(r.msg);
                     }
-
                 }
             });
-
         }
     </script>
 </head>
 
 <body>
     <form onclick="return false">
+        <h3>登录页</h3>
+
         <div>
-            <input type="text" name="username">
+            用户名： <input id="username" type="text" name="username">
         </div>
         <div>
-            <input type="password" name="password">
+            密  码： <input id="password" type="password" name="password">
         </div>
         <button onclick="login()">登录</button>
     </form>

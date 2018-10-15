@@ -7,3 +7,4 @@ spring:
     config:
       label: develop
       uri: http://localhost:8888
+session.redis.duetime: 1 #单位分钟

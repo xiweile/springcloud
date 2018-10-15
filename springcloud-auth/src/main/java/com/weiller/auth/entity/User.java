@@ -1,6 +1,7 @@
-package com.weiller.auth.hello.entity;
+package com.weiller.auth.entity;
 
 import lombok.Data;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +11,7 @@ import java.util.Map;
 public class User {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     private String username;
 

@@ -1,4 +1,4 @@
-package com.weiller.api.auth;
+package com.weiller.api.auth.service;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;

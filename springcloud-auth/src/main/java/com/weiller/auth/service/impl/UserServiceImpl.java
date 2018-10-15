@@ -1,18 +1,16 @@
-package com.weiller.auth.hello.service.impl;
+package com.weiller.auth.service.impl;
 
-import com.weiller.auth.hello.entity.User;
-import com.weiller.auth.hello.repository.UserRepository;
-import com.weiller.auth.hello.service.IUserService;
+import com.weiller.auth.entity.User;
+import com.weiller.auth.repository.UserRepository;
+import com.weiller.auth.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
 @Service
-public class UserServiceImpl implements IUserService{
+public class UserServiceImpl implements IUserService {
 
     @Autowired
     UserRepository userRepository;
@@ -27,6 +25,12 @@ public class UserServiceImpl implements IUserService{
 
     public Mono<User> getById(Integer id){
         return Mono.justOrEmpty(userRepository.findById(id));
+    }
+
+    @Override
+    public User getByUsernameAndPassword(User user) {
+        Example<User> template = Example.of(user);
+        return  userRepository.findOne(template).orElse(null) ;
     }
 
     public Mono<User> createOrUpdate( User  user){
