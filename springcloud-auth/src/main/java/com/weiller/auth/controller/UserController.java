@@ -57,11 +57,21 @@ public class UserController implements UserService{
         return msg;
     }
 
+
+    @PostMapping("/logout")
+    public Object logout(){
+        Msg msg = new Msg();
+        msg.setCode(MsgCode.SUCCESS.getCode());
+        msg.setMsg("用户退出");
+        return msg;
+    }
+
+
     @PostMapping("/online")
     public Msg isOnline(){
         Msg msg = new Msg();
         msg.setCode(MsgCode.SUCCESS.getCode());
-        msg.setMsg("在线");
+        msg.setMsg("用户在线");
         return msg;
     }
 

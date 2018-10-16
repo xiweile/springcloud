@@ -26,6 +26,23 @@
                 }
             });
         }
+        function logout() {
+            $.ajax({
+                type:'POST',
+                url: "/auth/logout",
+                async:false,
+                dataType: 'json',
+                //contentType: 'application/json',
+                success:function(r){
+                    if(r.code === "200"){
+                        // 在线
+                        window.location.href = "/index.html";
+                    }else{
+                        alert(r.msg);
+                    }
+                }
+            });
+        }
         $(function () {
             authFlush();
         })
@@ -33,5 +50,6 @@
 </head>
 <body>
 <h3>我是主页面</h3>
+<button onclick="logout()">退出</button>
 </body>
 </html>
