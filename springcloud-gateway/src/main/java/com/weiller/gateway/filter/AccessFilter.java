@@ -1,12 +1,13 @@
 package com.weiller.gateway.filter;
 
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
-import com.weiller.api.comm.IdentitySessionClient;
-import com.weiller.gateway.config.FilterPathConfig;
+import com.weiller.gateway.comm.FilterPathConfigProperties;
+import com.weiller.gateway.utils.IdentitySessionClient;
 import com.weiller.utils.comm.UUIDGenerator;
 import com.weiller.utils.model.Msg;
 import com.weiller.utils.model.MsgCode;
@@ -31,7 +32,7 @@ import javax.servlet.http.HttpSession;
 public class AccessFilter extends ZuulFilter{
 
     @Autowired
-    private FilterPathConfig filterPathConfig;
+    private FilterPathConfigProperties filterPathConfig;
 
     @Autowired
     private IdentitySessionClient identitySessionClient;
@@ -103,6 +104,8 @@ public class AccessFilter extends ZuulFilter{
                 // 已登录
                 ctx.setSendZuulResponse(true); // 允许路由
                 ctx.setResponseStatusCode(200);
+                // 刷新session持续时间
+                identitySessionClient.setSession(sessionid, JSON.toJSONString(sessionInfo));
             } else {
                 // 未登录 或已过期
                 ctx.setSendZuulResponse(false);// 不进行路由

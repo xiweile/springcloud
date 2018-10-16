@@ -1,5 +1,6 @@
 package com.weiller.auth.service.impl;
 
+import com.weiller.api.auth.entity.UserVo;
 import com.weiller.auth.entity.User;
 import com.weiller.auth.repository.UserRepository;
 import com.weiller.auth.service.IUserService;
@@ -28,9 +29,12 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public User getByUsernameAndPassword(User user) {
-        Example<User> template = Example.of(user);
-        return  userRepository.findOne(template).orElse(null) ;
+    public User getByUsernameAndPassword(UserVo vo) {
+        User user1 = new User();
+        user1.setUsername(vo.getUsername());
+        user1.setPassword(vo.getPassword());
+        Example<User> template = Example.of(user1);
+        return  userRepository.findOne(template).orElse(null);
     }
 
     public Mono<User> createOrUpdate( User  user){

@@ -1,4 +1,4 @@
-package com.weiller.gateway.config;
+package com.weiller.gateway.comm;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -12,8 +12,12 @@ import org.springframework.stereotype.Component;
 @Setter
 @Component
 @ConfigurationProperties(prefix = "filter.path")
-public class FilterPathConfig {
+public class FilterPathConfigProperties {
 
     private String ignores;
+
+    private String login;
+
+    private String logout;
 
 }

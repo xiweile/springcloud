@@ -37,7 +37,11 @@ eureka:
     instance-id: springcloud-gateway	#修改别名
     prefer-ip-address: true		    #显示IP地址
 
-filter.path.ignores: /login,/logout
+# 过滤器参数配置
+filter.path:
+  ignores: /login,/logout
+  login: /auth/login
+  logout: /auth/logout
 
 hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
 ribbon:

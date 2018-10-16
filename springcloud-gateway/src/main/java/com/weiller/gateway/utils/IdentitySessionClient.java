@@ -1,9 +1,10 @@
-package com.weiller.api.comm;
+package com.weiller.gateway.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
+
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -31,8 +32,11 @@ public class IdentitySessionClient {
         Boolean hasKey = redisTemplate.hasKey(sessionId);
         if(!hasKey.booleanValue()){
             redisTemplate.opsForValue().set(sessionId,sessionInfo,duetime, TimeUnit.MINUTES);
+        }else{
+            redisTemplate.expire(sessionId,duetime,TimeUnit.MINUTES);
         }
     }
+
 
     public void removeSession(String sessionId){
         redisTemplate.delete(sessionId);
