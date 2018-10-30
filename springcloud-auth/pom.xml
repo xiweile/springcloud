@@ -65,6 +65,16 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-rsa</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security.oauth</groupId>
+			<artifactId>spring-security-oauth2</artifactId>
+			<version>${oauth2.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -101,5 +111,6 @@
         </plugins>
 	</build>
 
-
+	<repositories>
+	</repositories>
 </project>

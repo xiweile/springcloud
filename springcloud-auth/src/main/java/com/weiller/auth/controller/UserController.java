@@ -7,11 +7,16 @@ import com.weiller.auth.service.IUserService;
 import com.weiller.utils.model.Msg;
 import com.weiller.utils.model.MsgCode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.util.function.Tuple2;
 import reactor.util.function.Tuples;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 public class UserController implements UserService{
@@ -19,25 +24,29 @@ public class UserController implements UserService{
     @Autowired
     private IUserService iUserService;
 
-    @PostMapping("/user")
     public Mono<User> create(@RequestBody User   user ) {
         return this.iUserService.createOrUpdate(user);
     }
 
-    @GetMapping("/user/all")
     public Flux<User> getList() {
         return this.iUserService.findAll();
     }
 
-    @GetMapping("/user/{id}")
     public Mono<User> get(@PathVariable("id") Integer id ) {
         return this.iUserService.getById(id);
     }
 
-    @DeleteMapping("/user/{id}")
     public Mono<Tuple2> delete(@PathVariable("id")Integer id){
         Tuple2<Boolean, String> tuple2 = Tuples.of(true, "删除成功！");
         return Mono.just(tuple2);
+    }
+
+    @PostMapping("/user")
+    public Map<String,Object> user(OAuth2Authentication user){
+        Map<String,Object> userInfo = new HashMap<>();
+        userInfo.put("user",user.getUserAuthentication().getPrincipal());
+        userInfo.put("authorities", AuthorityUtils.authorityListToSet(user.getUserAuthentication().getAuthorities()));
+        return userInfo;
     }
 
     @PostMapping("/login")

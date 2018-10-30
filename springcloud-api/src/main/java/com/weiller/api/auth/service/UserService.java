@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.*;
 @Component
 public interface UserService {
 
-    @GetMapping("/user/all")
+    @GetMapping("/hello/user/all")
     public Object getList();
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/hello/user/{id}")
     public Object get(@PathVariable("id") Integer id );
 
-    @DeleteMapping("/user/{id}")
+    @DeleteMapping("/hello/user/{id}")
     public Object delete(@PathVariable("id") Integer id);
 
-    @PostMapping("/login")
+    @PostMapping("/hello/login")
     public Object login(@RequestBody UserVo user);
 }
