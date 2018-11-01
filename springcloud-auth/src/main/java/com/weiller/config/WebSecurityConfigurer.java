@@ -6,12 +6,19 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * 定义用户ID、密码和角色
  */
 @Configuration
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
+
+    @Bean
+    public PasswordEncoder bCryptPasswordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 
     @Override
     @Bean
@@ -27,13 +34,13 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
+        auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
                 .withUser("zhangsan")
-                .password("zhangsan")
+                .password(new BCryptPasswordEncoder().encode("zhangsan"))
                 .roles("USER")
                 .and()
                 .withUser("admin")
-                .password("admin")
+                .password(new BCryptPasswordEncoder().encode("admin"))
                 .roles("ADMIN","USER");
     }
 

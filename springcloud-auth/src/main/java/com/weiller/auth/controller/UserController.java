@@ -41,7 +41,7 @@ public class UserController implements UserService{
         return Mono.just(tuple2);
     }
 
-    @PostMapping("/user")
+    @RequestMapping("/user")
     public Map<String,Object> user(OAuth2Authentication user){
         Map<String,Object> userInfo = new HashMap<>();
         userInfo.put("user",user.getUserAuthentication().getPrincipal());

@@ -1,5 +1,5 @@
 server:
-  port: 9002
+  port: 8002
 
 eureka:
   client:
@@ -20,3 +20,8 @@ ribbon:
 springcloud-auth:
   ribbon:
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://localhost:8001/user
