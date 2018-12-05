@@ -6,8 +6,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
-import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,11 +15,33 @@ public class FormLogin {
 
     static Map<String, String> COOKIES;
 
+    static String CODE = "0123456789abcdefghigklmnopqrstuvwxyz";
+
     public static void main(String[] args) throws Exception {
-        if(COOKIES==null){
-            login("zhangle", "zhangle123");// 输入 用户名，和密码
+        while (true){
+            String pwd = createPwd();
+            if(COOKIES==null){
+                login("wangjia", pwd);// 输入 用户名，和密码
+            }
+            if(getInfo()){
+                System.out.println("password ：" + pwd);
+                break;
+            }
         }
-        getInfo();
+
+    }
+
+    static String createPwd(){
+        int len = 10;
+        StringBuffer sb = new StringBuffer();
+        for (int i=6;i<=len;i++){
+            char[] crs = new char[i];
+            for(int x = 0;x<26;x++){
+
+            }
+
+        }
+        return "";
     }
 
     public static  void login(String userName,String pwd) throws IOException {
@@ -68,7 +88,7 @@ public class FormLogin {
 
     }
 
-    static void getInfo( ) throws IOException {
+    static boolean getInfo( ) throws IOException {
         // 三次访问用户信息
         Connection con3 = Jsoup.connect("http://parttime.zhms.cn/user/myinfo.aspx");
         con3.header("User-Agent",
@@ -78,7 +98,16 @@ public class FormLogin {
                 .cookies(COOKIES)
                 .execute();
         String body3 = resp3.body();
-        System.out.println(body3);
-
+        Document document = Jsoup.parse(body3);
+        Element dashboard = document.body().getElementById("dashboard");
+        Elements select = dashboard.select(".text");
+        if(select.size()>0){
+            for (Element s : select){
+                System.out.println(s.text());
+            }
+            return true;
+        }else{
+            return false;
+        }
     }
 }
