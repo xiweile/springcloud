@@ -1,14 +1,15 @@
-package com.weiller.gateway.filter;
+package com.weiller.identity.filter;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
-import com.weiller.gateway.comm.FilterPathConfigProperties;
-import com.weiller.gateway.utils.IdentitySessionClient;
-import com.weiller.utils.model.Msg;
-import com.weiller.utils.model.MsgCode;
+
+import com.weiller.identity.utils.FilterPathConfigProperties;
+import com.weiller.identity.utils.IdentitySessionClient;
+import com.weiller.identity.utils.model.Msg;
+import com.weiller.identity.utils.model.MsgCode;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,14 +21,12 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.InputStream;
 
 /**
- * 登出请求后过滤器
- *
- * @author weiller
- * @version 1.0,2018年10月16日13:01:45
+ * 登录请求后过滤器
  */
 @Component
 @Slf4j
-public class AfterLogoutFilter extends ZuulFilter {
+public class AfterLoginFilter extends ZuulFilter {
+
     @Autowired
     private FilterPathConfigProperties filterPathConfig;
 
@@ -48,7 +47,7 @@ public class AfterLogoutFilter extends ZuulFilter {
     public boolean shouldFilter() {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
-        if (request.getRequestURI().equals(filterPathConfig.getLogout())) {
+        if (request.getRequestURI().equals(filterPathConfig.getLogin())) {
             return true;
         }else  return false;
     }
@@ -79,12 +78,12 @@ public class AfterLogoutFilter extends ZuulFilter {
                         }
                     }
                     if (sessionid != null) {
-                        identitySessionClient.removeSession(sessionid);
+                        identitySessionClient.setSession(sessionid, jsonObject.getString("data") );
                         ctx.setResponseBody(jsonObject.toJSONString());
                     } else {
                         Msg msg = new Msg();
                         msg.setCode(MsgCode.ERROR.getCode());
-                        msg.setMsg("登出异常");
+                        msg.setMsg("登录异常");
                         ctx.setResponseBody(JSON.toJSONString(msg));
                     }
                 }
@@ -92,7 +91,7 @@ public class AfterLogoutFilter extends ZuulFilter {
             ctx.setResponseStatusCode(200);
         } catch (Exception e) {
             ctx.setResponseStatusCode(500);
-            log.error("登出时删除session 异常 ", e);
+            log.error("登录时设置session 异常 ", e);
         }
         ctx.setSendZuulResponse(true);
         return null;

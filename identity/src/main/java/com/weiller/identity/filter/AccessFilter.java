@@ -1,4 +1,4 @@
-package com.weiller.gateway.filter;
+package com.weiller.identity.filter;
 
 
 import com.alibaba.fastjson.JSON;
@@ -6,16 +6,17 @@ import com.alibaba.fastjson.JSONObject;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
-import com.weiller.gateway.comm.FilterPathConfigProperties;
-import com.weiller.gateway.utils.IdentitySessionClient;
-import com.weiller.utils.comm.UUIDGenerator;
-import com.weiller.utils.model.Msg;
-import com.weiller.utils.model.MsgCode;
+import com.weiller.identity.utils.FilterPathConfigProperties;
+import com.weiller.identity.utils.IdentitySessionClient;
+import com.weiller.identity.utils.comm.UUIDGenerator;
+import com.weiller.identity.utils.model.Msg;
+import com.weiller.identity.utils.model.MsgCode;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
