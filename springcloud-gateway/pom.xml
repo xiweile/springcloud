@@ -31,6 +31,12 @@
 			<artifactId>springcloud-api</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<!-- cookie身份认证
+			<dependency>
+			<groupId>com.weiller</groupId>
+			<artifactId>identity</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>

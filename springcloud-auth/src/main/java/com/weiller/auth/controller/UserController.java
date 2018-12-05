@@ -4,8 +4,8 @@ import com.weiller.api.auth.entity.UserVo;
 import com.weiller.api.auth.service.UserService;
 import com.weiller.auth.entity.User;
 import com.weiller.auth.service.IUserService;
-import com.weiller.utils.model.Msg;
-import com.weiller.utils.model.MsgCode;
+import com.weiller.identity.utils.model.Msg;
+import com.weiller.identity.utils.model.MsgCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
@@ -41,6 +41,7 @@ public class UserController implements UserService{
         return Mono.just(tuple2);
     }
 
+
     @RequestMapping("/user")
     public Map<String,Object> user(OAuth2Authentication user){
         Map<String,Object> userInfo = new HashMap<>();
@@ -48,6 +49,7 @@ public class UserController implements UserService{
         userInfo.put("authorities", AuthorityUtils.authorityListToSet(user.getUserAuthentication().getAuthorities()));
         return userInfo;
     }
+
 
     @PostMapping("/login")
     public Object login(@RequestBody UserVo userVo){
@@ -76,7 +78,7 @@ public class UserController implements UserService{
     }
 
 
-    @PostMapping("/online")
+    @GetMapping("/online")
     public Msg isOnline(){
         Msg msg = new Msg();
         msg.setCode(MsgCode.SUCCESS.getCode());

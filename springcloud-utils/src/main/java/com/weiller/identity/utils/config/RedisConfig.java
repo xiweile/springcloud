@@ -1,4 +1,4 @@
-package com.weiller.gateway.config;
+package com.weiller.identity.utils.config;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;

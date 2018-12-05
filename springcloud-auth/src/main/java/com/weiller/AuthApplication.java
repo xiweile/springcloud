@@ -13,9 +13,9 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @EnableDiscoveryClient
 @SpringBootApplication
 @EntityScan(basePackages={"com.weiller"})
-@EnableResourceServer
-@EnableAuthorizationServer
-@RefreshScope
+//@EnableResourceServer
+//@EnableAuthorizationServer
+//@RefreshScope
 public class AuthApplication {
 
 	public static void main(String[] args) {

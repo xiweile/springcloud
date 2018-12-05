@@ -1,8 +1,8 @@
 package com.weiller.auth.service.impl;
 
 import com.weiller.auth.service.IHelloService;
-import com.weiller.utils.model.Msg;
-import com.weiller.utils.model.MsgCode;
+import com.weiller.identity.utils.model.Msg;
+import com.weiller.identity.utils.model.MsgCode;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.*;

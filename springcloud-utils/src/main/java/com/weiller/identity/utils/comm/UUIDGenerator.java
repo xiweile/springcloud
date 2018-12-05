@@ -1,4 +1,4 @@
-package com.weiller.utils.comm;
+package com.weiller.identity.utils.comm;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

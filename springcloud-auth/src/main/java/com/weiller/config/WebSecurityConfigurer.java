@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,7 +21,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Override
+/*    @Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
@@ -30,9 +31,9 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     @Bean
     public UserDetailsService userDetailsServiceBean() throws Exception {
         return super.userDetailsServiceBean();
-    }
+    }*/
 
-    @Override
+/*    @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
                 .withUser("zhangsan")
@@ -42,6 +43,20 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .withUser("admin")
                 .password(new BCryptPasswordEncoder().encode("admin"))
                 .roles("ADMIN","USER");
+
+    }*/
+    @Override
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.httpBasic()
+                .and()
+                .authorizeRequests()
+                    .anyRequest()
+                    .authenticated()
+                .and()
+                .formLogin()
+                    .loginPage("/pages/login.html")
+                    .permitAll()
+        ;
     }
 
 }

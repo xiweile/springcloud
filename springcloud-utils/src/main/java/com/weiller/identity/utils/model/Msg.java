@@ -1,4 +1,4 @@
-package com.weiller.utils.model;
+package com.weiller.identity.utils.model;
 
 import lombok.Data;
 
