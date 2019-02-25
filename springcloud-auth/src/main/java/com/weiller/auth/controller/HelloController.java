@@ -5,6 +5,8 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.weiller.auth.service.IHelloService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +25,9 @@ public class HelloController {
 
     @Autowired
     DiscoveryClient discoveryClient;
+
+    @Value("${test.msg}")
+    String configMsg;
 
 
     public Object helloDefault(){
@@ -79,5 +84,10 @@ public class HelloController {
             list.add(map);
         }
         return FluxOperator.fromIterable(list);
+    }
+
+    @GetMapping("/config/test")
+    public Object configTest(){
+        return configMsg;
     }
 }

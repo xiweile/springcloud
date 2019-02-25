@@ -48,4 +48,4 @@ ribbon:
   ConnectTimeout: 3000
   ReadTimeout: 50000
 
-session.redis.duetime: 1 #单位分钟
+session.redis.duetime: 30 #单位分钟
