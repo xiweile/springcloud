@@ -7,13 +7,8 @@ spring:
     config:
       label: develop
       uri: http://localhost:8888
+    bus:
+      enabled: true
   kafka:
     bootstrap-servers: localhost:9092
-    consumer:
-      group-id: test
-management:
-  endpoints:
-    web:
-      exposure:
-        include: ["bus-refresh","bus-env"]
 session.redis.duetime: 1 #单位分钟
