@@ -37,4 +37,4 @@ spring:
     cache: false
 
 session.redis.duetime: 1 #单位分钟
-test.msg: 'hello 123456'
+test.msg: 'hello 111'
