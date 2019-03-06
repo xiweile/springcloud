@@ -11,4 +11,9 @@ spring:
       enabled: true
   kafka:
     bootstrap-servers: localhost:9092
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 session.redis.duetime: 1 #单位分钟
