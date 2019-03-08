@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+</head>
+<body>
+<div align="center">
+    <h2>自定义登录页面</h2>
+    <form th:action="@{/login}" method="post">
+        <label>
+            <span>用户名：</span>
+            <input type="text" name="username">
+            <!--<input type="text" name="uname">-->
+        </label>
+        <br/>
+        <label>
+            <span>密码：</span>
+            <input type="password" name="password">
+            <!--<input type="password" name="psd">-->
+        </label> <br/>
+        <input type="submit" class="submit input_button"  value="登录">
+    </form>
+</div>
+
+</body>
+</html>

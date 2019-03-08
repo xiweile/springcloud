@@ -1,7 +1,7 @@
-package com.weiller.auth.service;
+package com.weiller.auth.user.service;
 
 import com.weiller.api.auth.entity.UserVo;
-import com.weiller.auth.entity.User;
+import com.weiller.auth.user.entity.User;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -21,6 +21,7 @@ public interface IUserService {
 
      Mono<User> createOrUpdate( User  user);
 
-     Mono<User> delete(Integer id);
+     void delete(Integer id);
 
+     User getByUsername(String username);
 }

@@ -1,11 +1,11 @@
-package com.weiller.auth.controller;
+package com.weiller.auth.user.controller;
 
 import com.weiller.api.auth.entity.UserVo;
 import com.weiller.api.auth.service.UserService;
-import com.weiller.auth.entity.User;
-import com.weiller.auth.service.IUserService;
-import com.weiller.identity.utils.model.Msg;
-import com.weiller.identity.utils.model.MsgCode;
+import com.weiller.auth.user.entity.User;
+import com.weiller.auth.user.service.IUserService;
+import com.weiller.utils.model.Msg;
+import com.weiller.utils.model.MsgCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
@@ -24,6 +24,7 @@ public class UserController implements UserService{
     @Autowired
     private IUserService iUserService;
 
+    @PostMapping("/user")
     public Mono<User> create(@RequestBody User   user ) {
         return this.iUserService.createOrUpdate(user);
     }
@@ -51,7 +52,7 @@ public class UserController implements UserService{
     }
 
 
-    @PostMapping("/login")
+    //@PostMapping("/login")
     public Object login(@RequestBody UserVo userVo){
 
         Msg msg = new Msg();
@@ -69,7 +70,7 @@ public class UserController implements UserService{
     }
 
 
-    @PostMapping("/logout")
+    //@PostMapping("/logout")
     public Object logout(){
         Msg msg = new Msg();
         msg.setCode(MsgCode.SUCCESS.getCode());

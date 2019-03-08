@@ -1,5 +1,8 @@
 package com.weiller.config;
 
+import com.weiller.auth.security.handler.FailureAuthenticationHandler;
+import com.weiller.auth.security.handler.SuccessAuthenticationHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,6 +23,13 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     public PasswordEncoder bCryptPasswordEncoder(){
         return new BCryptPasswordEncoder();
     }
+
+
+    @Autowired
+    private FailureAuthenticationHandler failureHandler;
+
+    @Autowired
+    private SuccessAuthenticationHandler successHandler;
 
 /*    @Override
     @Bean
@@ -50,13 +60,19 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
         httpSecurity.httpBasic()
                 .and()
                 .authorizeRequests()
+                    .antMatchers("/login")
+                    .permitAll()
                     .anyRequest()
                     .authenticated()
                 .and()
                 .formLogin()
-                    .loginPage("/pages/login.html")
+                    .loginPage("/login")
+                   /* .successHandler(successHandler)
+                    .failureHandler(failureHandler)*/
                     .permitAll()
-        ;
+                .and()
+                .csrf().disable()
+                ;
     }
 
 }

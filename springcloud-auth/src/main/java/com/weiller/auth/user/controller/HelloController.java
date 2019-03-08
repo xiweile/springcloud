@@ -1,11 +1,9 @@
-package com.weiller.auth.controller;
-
+package com.weiller.auth.user.controller;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
-import com.weiller.auth.service.IHelloService;
+import com.weiller.auth.user.service.IHelloService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -23,7 +21,7 @@ import java.util.*;
 public class HelloController {
 
     @Autowired
-    IHelloService helloService;
+    IHelloService iHelloService;
 
     @Autowired
     DiscoveryClient discoveryClient;
@@ -63,12 +61,12 @@ public class HelloController {
                 e.printStackTrace();
             }
         }
-        return helloService.sayOnce();
+        return iHelloService.sayOnce();
     }
 
     @RequestMapping(value = "/hello/list",method = RequestMethod.GET)
     public Object helloMore(){
-        return helloService.saySome();
+        return iHelloService.saySome();
     }
 
     @GetMapping("/provider/discovery")
