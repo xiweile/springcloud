@@ -10,7 +10,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @EnableCircuitBreaker
 @EnableDiscoveryClient
 @SpringBootApplication
-@MapperScan(basePackages={"com.weiller"})
+@MapperScan("com.weiller.auth.user.dao")
 //@EnableResourceServer
 //@EnableAuthorizationServer
 //@RefreshScope

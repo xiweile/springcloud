@@ -25,4 +25,6 @@ public interface UserMapper {
 
     User getByUsername(@Param("username") String username);
 
+    User getUserAndRoleByUsername(@Param("username") String username);
+
 }
