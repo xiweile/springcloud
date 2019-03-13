@@ -22,19 +22,21 @@ spring:
     hikari:
       minimum-idle: 5
       maximum-pool-size: 20
-  jpa:
-    database: mysql
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL5Dialect
+#  jpa:
+#    database: mysql
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: update
+#      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQL5Dialect
+  #视图 这是默认的配置
   thymeleaf:
-    enabled: true
-    encoding: utf-8
     cache: false
-
+    prefix: classpath:/templates/
+    suffix: .html
+  #检查模板是否存在，然后再呈现
+    check-template-location: true
 session.redis.duetime: 1 #单位分钟
 test.msg: 'hello 555'

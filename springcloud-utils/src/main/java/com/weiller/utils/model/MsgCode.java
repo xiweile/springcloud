@@ -1,4 +1,4 @@
-package com.weiller.identity.utils.model;
+package com.weiller.utils.model;
 
 
 /**

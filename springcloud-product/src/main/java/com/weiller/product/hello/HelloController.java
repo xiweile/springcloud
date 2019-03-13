@@ -1,7 +1,7 @@
 package com.weiller.product.hello;
 
 import com.weiller.api.auth.service.UserService;
-import com.weiller.identity.utils.model.Msg;
+import com.weiller.utils.model.Msg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.ribbon.RibbonClientName;
 import org.springframework.web.bind.annotation.DeleteMapping;

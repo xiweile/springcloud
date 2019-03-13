@@ -49,12 +49,21 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
 		</dependency>
-		<dependency>
+		<!--<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>-->
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>1.3.2</version>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
@@ -108,6 +117,27 @@
 					</delimiters>
 				</configuration>
 			</plugin>
+			<!-- mybatis generator 自动生成代码插件 -->
+			<plugin>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+				<version>1.3.2</version>
+				<configuration>
+					<configurationFile>${basedir}/src/main/resources/generator/generatorConfig.xml</configurationFile>
+					<overwrite>true</overwrite>
+					<verbose>true</verbose>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+				<version>1.3.5</version>
+				<configuration>
+					<verbose>true</verbose>
+					<overwrite>true</overwrite>
+				</configuration>
+			</plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

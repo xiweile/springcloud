@@ -16,6 +16,6 @@ public class UserVo {
 
     private Map<String,Object> info;
 
-    private List<String> role;
+    private List<String> roles;
 
 }

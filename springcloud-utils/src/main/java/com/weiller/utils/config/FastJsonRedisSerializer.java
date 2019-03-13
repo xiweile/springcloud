@@ -1,4 +1,4 @@
-package com.weiller.identity.utils.config;
+package com.weiller.utils.config;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;

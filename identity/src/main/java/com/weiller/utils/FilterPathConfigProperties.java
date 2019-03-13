@@ -1,4 +1,4 @@
-package com.weiller.identity.utils;
+package com.weiller.utils;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -9,7 +9,7 @@ spring:
           searchPaths: springcloud-config-repo/authservice
           username: xiweile
           password: xwl8416655
-          clone-on-start: true
+#          clone-on-start: true
         encrypt:
           enabled: false
     bus:
@@ -22,4 +22,4 @@ management:
   endpoints:
     web:
       exposure:
-        include: ["bus-refresh","bus-env"]
+        include: '*'

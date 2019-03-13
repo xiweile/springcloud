@@ -1,4 +1,4 @@
-package com.weiller.identity.utils;
+package com.weiller.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
