@@ -1,3 +1,10 @@
 spring:
   application:
     name: springcloud-config
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+  instance:
+    instance-id: springcloud-config	#修改别名
+    prefer-ip-address: true		    #显示IP地址

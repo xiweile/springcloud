@@ -23,6 +23,11 @@ public class BrowserSecurityController {
     // 用于重定向
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
+    @GetMapping("/")
+    public String indexPage(){
+        return "index";
+    }
+
     @GetMapping("/login")
     public String loginPage(){
         return "login";

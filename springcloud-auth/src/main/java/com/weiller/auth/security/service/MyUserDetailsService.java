@@ -2,7 +2,10 @@ package com.weiller.auth.security.service;
 
 import com.weiller.auth.user.dao.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.MessageSourceAccessor;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.SpringSecurityMessageSource;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,26 +20,38 @@ import java.util.List;
 @Component
 public class MyUserDetailsService implements UserDetailsService{
 
+    protected MessageSourceAccessor messages = SpringSecurityMessageSource.getAccessor();
+
     @Autowired
     UserMapper userMapper;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        com.weiller.auth.user.entity.User userObj = userMapper.getUserAndRoleByUsername(username);
-        List<GrantedAuthority>   authorityList=new ArrayList<>();
-        List<String> stringList = userObj.getRoles();
-        if(stringList!=null) {
-            String[] strings = new String[stringList.size()];
-             authorityList = AuthorityUtils.createAuthorityList(stringList.toArray(strings) );
+    public UserDetails loadUserByUsername(String username) throws AuthenticationException {
+        if("".equals(username.trim())){
+            throw new UsernameNotFoundException(this.messages.getMessage("LdapAuthenticationProvider.emptyUsername"));
         }
-        User user = new User(userObj.getUsername(),
-                userObj.getPassword(),
-                true,
-                true,
-                true,
-                true,authorityList
-                );
-        return user;
+        com.weiller.auth.user.entity.User userObj = userMapper.getUserAndRoleByUsername(username);
+        if(userObj!=null){
+            List<GrantedAuthority>   authorityList=new ArrayList<>();
+            List<String> stringList = userObj.getRoles();
+            if(stringList!=null) {
+                String[] strings = new String[stringList.size()];
+                authorityList = AuthorityUtils.createAuthorityList(stringList.toArray(strings) );
+            }
+            User user = new User(userObj.getUsername(),
+                    userObj.getPassword(),
+                    true,
+                    true,
+                    true,
+                    true,authorityList
+            );
+            return user;
+        }else {
+            throw new UsernameNotFoundException(this.messages.getMessage("JdbcDaoImpl.notFound",
+                    new Object[] { username }, "Username {0} not found"));
+        }
+
+
 
     }
 }

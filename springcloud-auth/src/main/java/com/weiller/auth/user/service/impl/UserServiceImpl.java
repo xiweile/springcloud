@@ -47,9 +47,9 @@ public class UserServiceImpl implements IUserService {
         user.setPassword(encodePassword);
         User user1 = userMapper.getByUsername(user.getUsername());
         if(user1!=null){
-            userMapper.insertSelective(user);
-        }else{
             userMapper.updateByPrimaryKeySelective(user);
+        }else{
+            userMapper.insertSelective(user);
         }
         return Mono.just(user);
     }

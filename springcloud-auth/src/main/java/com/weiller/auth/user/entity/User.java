@@ -13,7 +13,7 @@ public class User {
 
     private String username;
 
-    private String state;
+    private String state ="01";
 
     private Map<String,Object> info;
 

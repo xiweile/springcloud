@@ -1,4 +1,4 @@
-package com.weiller.config;
+package com.weiller.auth.security.config;
 
 import com.weiller.auth.security.handler.FailureAuthenticationHandler;
 import com.weiller.auth.security.handler.SuccessAuthenticationHandler;
