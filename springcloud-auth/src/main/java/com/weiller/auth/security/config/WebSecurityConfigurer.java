@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -17,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * 定义用户ID、密码和角色
  */
 @Configuration
+@EnableWebSecurity
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Bean
@@ -60,16 +62,17 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
         httpSecurity.httpBasic()
                 .and()
                 .authorizeRequests()
-                    .antMatchers("/login")
-                    .permitAll()
-                    .anyRequest()
-                    .authenticated()
+                    .antMatchers("/login").permitAll()
+                    .antMatchers("/user/**").hasRole("ADMIN")
+                    .anyRequest().authenticated()
                 .and()
                 .formLogin()
                     .loginPage("/login")
                    /* .successHandler(successHandler)
                     .failureHandler(failureHandler)*/
                     .permitAll()
+                .and()
+                .logout().permitAll()
                 .and()
                 .csrf().disable()
                 ;

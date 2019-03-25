@@ -43,10 +43,11 @@ public class UserServiceImpl implements IUserService {
     }
 
     public Mono<User> createOrUpdate( User  user){
+        User user1 = userMapper.getByUsername(user.getUsername());
         String encodePassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodePassword);
-        User user1 = userMapper.getByUsername(user.getUsername());
         if(user1!=null){
+            user.setId(user1.getId());
             userMapper.updateByPrimaryKeySelective(user);
         }else{
             userMapper.insertSelective(user);

@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>main</title>
 </head>
 <body>
-我是主页面
+<div th:inline="text">你好，[[${#httpServletRequest.remoteUser}]]</div>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="退出"/>
+</form>
 
 </body>
 </html>

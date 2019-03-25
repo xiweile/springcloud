@@ -14,7 +14,8 @@
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="state" jdbcType="VARCHAR" property="state" />
-    <collection property="roles" column="role"  ofType="string" >
+    <collection property="roles"  javaType="list" ofType="java.lang.String" >
+      <result column="role"/>
     </collection>
   </resultMap>
   <sql id="Base_Column_List">
@@ -26,7 +27,7 @@
     from user
   </select>
   <select id="getUserAndRoleByUsername" parameterType="java.lang.String" resultMap="userAndRoleResutMap">
-    select u.*,r.rolename role FROM user u
+    select u.*,r.rolename as role FROM user u
     left JOIN user_role ur on u.id = ur.user_id
     left join role r on r.id = ur.role_id
         where u.username = #{username,jdbcType=INTEGER}
