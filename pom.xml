@@ -36,6 +36,7 @@
 		<fastjson.version>1.2.13</fastjson.version>
 		<commons-io.version>2.4</commons-io.version>
 		<oauth2.version>2.3.4.RELEASE</oauth2.version>
+		<spring-social.version>2.0.0.M4</spring-social.version>
 	</properties>
 
 	<dependencyManagement>
