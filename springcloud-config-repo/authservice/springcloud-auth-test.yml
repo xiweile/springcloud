@@ -1,6 +1,3 @@
-server:
-  port: 9001
-
 info:
   author: weiller
   service-url: http://localhost:$server.port$/
