@@ -35,12 +35,12 @@ public interface SecurityConstants {
     /**
      * weixin appID
      */
-    String DEFAULT_SOCIAL_WEIXIN_APP_ID = "wxfd6965ab1fc6adb2";
+    String DEFAULT_SOCIAL_WEIXIN_APP_ID = "wxca6542b235eff843";
 
     /**
      * weixin appsECRET
      */
-    String DEFAULT_SOCIAL_WEIXIN_APP_SECRET = "66bb4566de776ac699ec1dbed0cc3dd1";
+    String DEFAULT_SOCIAL_WEIXIN_APP_SECRET = "8e9f7c1568b951e1bad29d002d1fb217";
 
     /**
      * qq appID

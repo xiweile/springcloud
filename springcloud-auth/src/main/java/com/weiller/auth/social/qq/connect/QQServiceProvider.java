@@ -1,7 +1,7 @@
-package com.weiller.auth.social.connect;
+package com.weiller.auth.social.qq.connect;
 
-import com.weiller.auth.social.api.QQ;
-import com.weiller.auth.social.api.impl.QQImpl;
+import com.weiller.auth.social.qq.api.QQ;
+import com.weiller.auth.social.qq.api.impl.QQImpl;
 import org.springframework.social.oauth2.AbstractOAuth2ServiceProvider;
 
 /**

@@ -1,7 +1,7 @@
-package com.weiller.auth.social.config;
+package com.weiller.auth.social.qq.config;
 
 import com.weiller.auth.social.SocialConnectView;
-import com.weiller.auth.social.connect.QQConnectionFactory;
+import com.weiller.auth.social.qq.connect.QQConnectionFactory;
 import com.weiller.auth.utils.SecurityConstants;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;

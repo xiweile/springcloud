@@ -1,4 +1,4 @@
-package com.weiller.auth.social.api;
+package com.weiller.auth.social.qq.api;
 
 /**
  * QQ认证接口

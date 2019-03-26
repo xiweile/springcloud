@@ -1,7 +1,7 @@
-package com.weiller.auth.social.connect;
+package com.weiller.auth.social.qq.connect;
 
-import com.weiller.auth.social.api.QQ;
-import com.weiller.auth.social.api.QQUserInfo;
+import com.weiller.auth.social.qq.api.QQ;
+import com.weiller.auth.social.qq.api.QQUserInfo;
 import org.springframework.social.connect.ApiAdapter;
 import org.springframework.social.connect.ConnectionValues;
 import org.springframework.social.connect.UserProfile;

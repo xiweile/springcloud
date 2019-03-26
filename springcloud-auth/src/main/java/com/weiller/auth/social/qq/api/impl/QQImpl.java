@@ -1,14 +1,12 @@
-package com.weiller.auth.social.api.impl;
+package com.weiller.auth.social.qq.api.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.weiller.auth.social.api.QQ;
-import com.weiller.auth.social.api.QQUserInfo;
+import com.weiller.auth.social.qq.api.QQ;
+import com.weiller.auth.social.qq.api.QQUserInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.social.oauth2.AbstractOAuth2ApiBinding;
 import org.springframework.social.oauth2.TokenStrategy;
-
-import javax.security.sasl.AuthenticationException;
 
 @Slf4j
 public class QQImpl extends AbstractOAuth2ApiBinding implements QQ {
