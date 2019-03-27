@@ -68,7 +68,9 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers("/login","/login/*",
                             "/register",
-                            "/social/info",
+                            "/socialRegister",  //社交账号注册和绑定页面
+                            "/user/register",   //处理社交注册请求
+                            "/social/info",     //获取当前社交用户信息
                             "/**/*.js",
                             "/**/*.css",
                             "/**/*.jpg",
@@ -90,5 +92,16 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 ;
     }
+
+    /**
+     * 去除角色中role_的前缀
+     * 表达式需要.access("hasRole('ADMIN')");
+     *
+     * @throws Exception
+     */
+   /* @Bean
+    GrantedAuthorityDefaults grantedAuthorityDefaults() {
+        return new GrantedAuthorityDefaults(""); // Remove the ROLE_ prefix
+    }*/
 
 }

@@ -14,9 +14,8 @@ import reactor.core.publisher.Mono;
 @Service("iUserService")
 public class UserServiceImpl implements IUserService {
 
-
-
-    private  PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    @Autowired
+    private  PasswordEncoder passwordEncoder;
 
     @Autowired
     UserMapper userMapper;
@@ -42,7 +41,14 @@ public class UserServiceImpl implements IUserService {
         return  userMapper.getByUsernameAndPassword(vo.getUsername(),vo.getPassword());
     }
 
-    public Mono<User> createOrUpdate( User  user){
+    public  User create ( User  user){
+        String encodePassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodePassword);
+        userMapper.insertSelective(user);
+        return  user ;
+    }
+
+    public  User createOrUpdate( User  user){
         User user1 = userMapper.getByUsername(user.getUsername());
         String encodePassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodePassword);
@@ -52,7 +58,7 @@ public class UserServiceImpl implements IUserService {
         }else{
             userMapper.insertSelective(user);
         }
-        return Mono.just(user);
+        return  user ;
     }
 
     public void delete(Integer id){

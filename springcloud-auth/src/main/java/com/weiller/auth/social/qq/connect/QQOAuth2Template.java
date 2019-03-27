@@ -15,8 +15,11 @@ import java.nio.charset.Charset;
  */
 @Slf4j
 public class QQOAuth2Template extends OAuth2Template {
+
     public QQOAuth2Template(String clientId, String clientSecret, String authorizeUrl, String accessTokenUrl) {
         super(clientId, clientSecret, authorizeUrl, accessTokenUrl);
+        //当true的时候，才会带上参数去获取token，否则获取accessToken 不带clientId，clientSecret参数
+        setUseParametersForClientAuthentication(true);
     }
 
     @Override
@@ -27,7 +30,7 @@ public class QQOAuth2Template extends OAuth2Template {
         String[] items = StringUtils.splitByWholeSeparatorPreserveAllTokens(responseStr, "&");
         //http://wiki.connect.qq.com/使用authorization_code获取access_token
         //access_token=FE04************************CCE2&expires_in=7776000&refresh_token=88E4************************BE14
-        if(items.length>0){
+        if(items!=null && items.length>0){
             String accessToken  = StringUtils.substringAfterLast(items[0], "=");
             Long expiresIn  = new Long(StringUtils.substringAfterLast(items[1], "="));
             String refreshToken  = StringUtils.substringAfterLast(items[2], "=");

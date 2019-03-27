@@ -25,7 +25,7 @@ public class UserController implements UserService{
     private IUserService iUserService;
 
     @PostMapping("/user")
-    public Mono<User> create(@RequestBody User   user ) {
+    public User create(@RequestBody User   user ) {
         return this.iUserService.createOrUpdate(user);
     }
 

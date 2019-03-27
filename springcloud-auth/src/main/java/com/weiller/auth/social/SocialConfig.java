@@ -52,9 +52,9 @@ public class SocialConfig extends SocialConfigurerAdapter {
     public UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator connectionFactoryLocator) {
         JdbcUsersConnectionRepository repository = new JdbcUsersConnectionRepository(dataSource,
                 connectionFactoryLocator, Encryptors.noOpText());
-//        if (myConnectionSignUp != null) {
-//            repository.setConnectionSignUp(myConnectionSignUp);
-//        }
+        if (myConnectionSignUp != null) {
+            repository.setConnectionSignUp(myConnectionSignUp);
+        }
         return repository;
     }
 

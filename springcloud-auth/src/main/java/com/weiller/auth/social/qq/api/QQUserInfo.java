@@ -39,6 +39,11 @@ public class QQUserInfo {
      * 	用户在QQ空间的昵称。
      */
     private String nickname;
+
+    /**
+     * 星座
+     */
+    private String constellation;
     /**
      * 	大小为30×30像素的QQ空间头像URL。
      */
@@ -51,6 +56,11 @@ public class QQUserInfo {
      * 	大小为100×100像素的QQ空间头像URL。
      */
     private String figureurl_2;
+
+    /**
+     * 	大小为140×140像素的QQ头像URL。
+     */
+    private String figureurl_qq;
     /**
      * 	大小为40×40像素的QQ头像URL。
      */
@@ -59,6 +69,11 @@ public class QQUserInfo {
      * 	大小为100×100像素的QQ头像URL。需要注意，不是所有的用户都拥有QQ的100×100的头像，但40×40像素则是一定会有。
      */
     private String figureurl_qq_2;
+
+    /**
+     * 图像类型
+     */
+    private String figureurl_type;
     /**
      * 	性别。 如果获取不到则默认返回”男”
      */

@@ -19,7 +19,9 @@ public interface IUserService {
 
      User getByUsernameAndPassword(UserVo user);
 
-     Mono<User> createOrUpdate( User  user);
+     User create ( User  user);
+
+     User createOrUpdate( User  user);
 
      void delete(Integer id);
 
