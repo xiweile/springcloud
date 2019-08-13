@@ -1,6 +1,7 @@
 package com.weiller.auth.security.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.weiller.utils.model.Msg;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class FailureAuthenticationHandler implements AuthenticationFailureHandle
         logger.info("登录失败");
         httpServletResponse.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
         httpServletResponse.setContentType("application/json;charset=UTF-8");
-        httpServletResponse.getWriter().write(objectMapper.writeValueAsString(e));
-//        httpServletResponse.getWriter().write(objectMapper.writeValueAsString(new SimpleResonse(e.getMessage())));
+      //  httpServletResponse.getWriter().write(objectMapper.writeValueAsString(e));
+        httpServletResponse.getWriter().write(objectMapper.writeValueAsString(Msg.failure("4000", e.getMessage()) ));
     }
 }

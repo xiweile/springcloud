@@ -1,6 +1,8 @@
 server:
   port: 8002
-
+  servlet:
+    context-path: /product
+auth-server: http://localhost:8001/auth
 eureka:
   client:
     service-url:
@@ -23,5 +25,11 @@ springcloud-auth:
 
 security:
   oauth2:
-    resource:
-      user-info-uri: http://localhost:8001/user
+   client:
+        client-id: product
+        client-secret: 123456
+        access-token-uri: ${auth-server}/oauth/token
+        user-authorization-uri: ${auth-server}/oauth/authorize
+   resource:
+        jwt:
+           key-uri: ${auth-server}/oauth/token_key

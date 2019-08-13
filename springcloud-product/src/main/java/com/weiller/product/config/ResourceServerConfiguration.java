@@ -10,14 +10,14 @@ import java.util.logging.Filter;
 /**
  * 定义用户访问时要通过验证
  */
-@Configuration
+//@Configuration
 public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter{
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+       /* http.authorizeRequests()
                 .antMatchers(HttpMethod.DELETE,"/hello").hasRole("ADMIN")
-                .anyRequest().authenticated();
+                .anyRequest().authenticated();*/
     }
 
 }

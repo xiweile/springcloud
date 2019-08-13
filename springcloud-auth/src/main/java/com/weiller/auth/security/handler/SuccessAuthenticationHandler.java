@@ -1,6 +1,7 @@
 package com.weiller.auth.security.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.weiller.utils.model.Msg;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,6 @@ public class SuccessAuthenticationHandler implements AuthenticationSuccessHandle
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         logger.info("登录成功");
         httpServletResponse.setContentType("application/json;charset=UTF-8");
-        httpServletResponse.getWriter().write(objectMapper.writeValueAsString(authentication)+"/n"+"登录成功了");
+        httpServletResponse.getWriter().write(objectMapper.writeValueAsString(Msg.success(authentication.getPrincipal())));
     }
 }
