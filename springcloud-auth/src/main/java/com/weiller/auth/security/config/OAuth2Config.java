@@ -41,10 +41,17 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
                 .withClient("product")
-                .redirectUris("http://localhost:8002/login")
+                .redirectUris("http://localhost:8002/product/hello")
                 .secret(new BCryptPasswordEncoder().encode("123456"))
                 .authorizedGrantTypes("authorization_code","refresh_token","password","client_credentials")
-                .scopes("webclient","mobileclient");
+                .scopes("webclient","mobileclient")
+        .and()
+                .withClient("member")
+                .redirectUris("http://localhost:8001/member/hello")
+                .secret(new BCryptPasswordEncoder().encode("123456"))
+                .authorizedGrantTypes("authorization_code","refresh_token","password","client_credentials")
+                .scopes("webclient","mobileclient")
+        ;
         //clients.jdbc(dataSource);
 
     }

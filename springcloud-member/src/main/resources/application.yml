@@ -1,0 +1,35 @@
+server:
+  port: 8002
+  servlet:
+    context-path: /member
+auth-server: http://localhost:8001/
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+  instance:
+    instance-id: springcloud-member #修改别名
+    prefer-ip-address: true
+
+spring:
+  application:
+    name: springcloud-product
+
+ribbon:
+  client:
+    name: springcloud-auth
+
+springcloud-auth:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+security:
+  oauth2:
+   client:
+        client-id: member
+        client-secret: 123456
+        access-token-uri: ${auth-server}/oauth/token
+        user-authorization-uri: ${auth-server}/oauth/authorize
+   resource:
+        jwt:
+           key-uri: ${auth-server}/oauth/token_key

@@ -14,10 +14,11 @@
 		<module>springcloud-api</module>
 		<module>springcloud-utils</module>
 		<module>springcloud-gateway</module>
-		<module>springcloud-product</module>
 		<module>springcloud-registry</module>
 		<module>springcloud-auth</module>
 		<module>springcloud-config</module>
+		<module>springcloud-product</module>
+		<module>springcloud-member</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>

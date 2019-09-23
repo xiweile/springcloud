@@ -79,11 +79,11 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-security</artifactId>
 		</dependency>
-	<!--	<dependency>
+		<dependency>
 			<groupId>org.springframework.security.oauth</groupId>
 			<artifactId>spring-security-oauth2</artifactId>
 			<version>${oauth2.version}</version>
-		</dependency>-->
+		</dependency>
 
 		<!--spring-social 相关-->
 		<!--<dependency>
@@ -117,10 +117,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-		<dependency>
+		<!--<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-bus-kafka</artifactId>
-		</dependency>
+		</dependency>-->
 	</dependencies>
 
 	<build>
