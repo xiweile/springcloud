@@ -15,7 +15,9 @@ public class ClientWebsecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
+        http.logout().logoutSuccessUrl("http://localhost:8001/logout");
         http.antMatcher("/**").authorizeRequests()
                 .anyRequest().authenticated();
+        http.csrf().disable();
     }
 }

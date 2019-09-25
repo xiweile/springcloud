@@ -24,7 +24,7 @@ public class UserController implements UserService{
     @Autowired
     private IUserService iUserService;
 
-    @PostMapping("/user")
+    @PutMapping("/user")
     public User create(@RequestBody User   user ) {
         return this.iUserService.createOrUpdate(user);
     }

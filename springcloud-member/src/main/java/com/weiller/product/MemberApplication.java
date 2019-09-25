@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 @EnableDiscoveryClient
 @SpringBootApplication
 @EnableResourceServer // 向微服务表明这是一个受保护的资源
-public class ProductApplication {
+public class MemberApplication {
 
 	@Bean
 	@LoadBalanced
@@ -23,6 +23,6 @@ public class ProductApplication {
 
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProductApplication.class, args);
+		SpringApplication.run(MemberApplication.class, args);
 	}
 }

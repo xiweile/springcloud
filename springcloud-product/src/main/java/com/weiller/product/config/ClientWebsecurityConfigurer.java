@@ -8,14 +8,15 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
-@EnableWebSecurity
+//@EnableWebSecurity
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableOAuth2Sso
 public class ClientWebsecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.antMatcher("/**").authorizeRequests()
-                .anyRequest().authenticated();
+        http.logout().logoutSuccessUrl("http://localhost:8001/logout");
+        http.authorizeRequests().anyRequest().authenticated()
+        .and().csrf().disable();
     }
 }
