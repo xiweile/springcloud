@@ -2,7 +2,7 @@ server:
   port: 8003
   servlet:
     context-path: /member
-auth-server: http://localhost:8001
+
 eureka:
   client:
     service-url:
@@ -23,6 +23,7 @@ springcloud-auth:
   ribbon:
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
 
+auth-server: http://localhost:8001
 security:
   oauth2:
    client:
@@ -33,3 +34,4 @@ security:
    resource:
         jwt:
            key-uri: ${auth-server}/oauth/token_key
+        user-info-uri: ${auth-server}/user

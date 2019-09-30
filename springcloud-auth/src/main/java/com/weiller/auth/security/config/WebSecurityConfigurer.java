@@ -105,8 +105,8 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .and()
                 .apply(merryyouSpringSocialConfigurer)
                 .and()
-                .logout().permitAll()
-                .and()
+               // .logout().permitAll()
+               // .and()
                 .csrf().disable()
                 ;
     }

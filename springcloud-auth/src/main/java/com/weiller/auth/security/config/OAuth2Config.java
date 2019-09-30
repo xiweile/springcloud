@@ -47,7 +47,7 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
                 .scopes("webclient","mobileclient")
         .and()
                 .withClient("member")
-                .redirectUris("http://localhost:8001/member/login")
+                .redirectUris("http://localhost:8003/member/login")
                 .secret(new BCryptPasswordEncoder().encode("123456"))
                 .authorizedGrantTypes("authorization_code","refresh_token","password","client_credentials")
                 .scopes("webclient","mobileclient")

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>member</title>
+</head>
+<body>
+<div th:inline="text">你好，[[${#httpServletRequest.remoteUser}]]  这里是会员管理系统</div>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="退出"/>
+</form>
+
+</body>
+</html>

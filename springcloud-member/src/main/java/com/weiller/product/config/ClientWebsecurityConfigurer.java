@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
-@EnableWebSecurity
+//@EnableWebSecurity
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableOAuth2Sso
 public class ClientWebsecurityConfigurer extends WebSecurityConfigurerAdapter {
