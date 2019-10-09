@@ -16,6 +16,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.core.GrantedAuthorityDefaults;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -80,21 +81,21 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     }
 
     @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/assets/**","/**/*.js","/**/*.css","/**/*.jpg","/**/*.png","/**/*.woff2");
+    }
+
+    @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeRequests()
-                    .antMatchers("/oauth/**","/login","/login/*",
+                    .antMatchers("/login","/oauth/**","/online",
                             "/register",
                             "/socialRegister",  //社交账号注册和绑定页面
                             "/user/register",   //处理社交注册请求
-                            "/social/info",     //获取当前社交用户信息
-                            "/**/*.js",
-                            "/**/*.css",
-                            "/**/*.jpg",
-                            "/**/*.png",
-                            "/**/*.woff2").permitAll()
-                    .antMatchers("/oauth/**").authenticated()
-                    .antMatchers("/user/**").hasRole("ADMIN")
+                            "/social/info"     //获取当前社交用户信息
+                     ).permitAll()
+                    .antMatchers("/user/all").hasRole("ADMIN")
                     .anyRequest().authenticated()
                 .and()
                 .formLogin()

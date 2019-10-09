@@ -17,8 +17,8 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 public class MemberApplication {
 
-	@Bean
-	@LoadBalanced
+	//@Bean
+	//@LoadBalanced
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
 	}

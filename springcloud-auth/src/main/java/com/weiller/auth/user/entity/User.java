@@ -15,7 +15,7 @@ public class User {
 
     private String state ="01";
 
-    private Map<String,Object> info;
+    //private Map<String,Object> info;
 
     private List<String> roles;
 

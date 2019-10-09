@@ -7,6 +7,7 @@ import com.weiller.auth.user.service.IUserService;
 import com.weiller.utils.model.Msg;
 import com.weiller.utils.model.MsgCode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +30,7 @@ public class UserController implements UserService{
         return this.iUserService.createOrUpdate(user);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     public Flux<User> getList() {
         return this.iUserService.findAll();
     }
@@ -78,8 +80,6 @@ public class UserController implements UserService{
         return msg;
     }
 
-
-    @GetMapping("/online")
     public Msg isOnline(){
         Msg msg = new Msg();
         msg.setCode(MsgCode.SUCCESS.getCode());

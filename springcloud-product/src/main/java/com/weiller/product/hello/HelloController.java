@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.ribbon.RibbonClientName;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -14,9 +15,6 @@ public class HelloController {
 
     @RibbonClientName
     private String name;
-
-    @Autowired
-    RestTemplate restTemplate;
 
     @Autowired
     UserService userService;
@@ -40,5 +38,10 @@ public class HelloController {
     @GetMapping("/remote/user/list")
     public Object getUser(){
         return userService.getList();
+    }
+
+    @GetMapping("/remote/online")
+    public Object isOnline(){
+        return userService.isOnline();
     }
 }
