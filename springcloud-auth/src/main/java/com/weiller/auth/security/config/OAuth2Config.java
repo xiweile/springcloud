@@ -53,6 +53,13 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
                 .authorizedGrantTypes("authorization_code","refresh_token")
                 .scopes("webclient","mobileclient")
                 .autoApprove(true)
+        .and()
+                .withClient("postman")
+                .redirectUris("https://www.getpostman.com/oauth2/callback")
+                .secret(new BCryptPasswordEncoder().encode("123456"))//,"password","client_credentials"
+                .authorizedGrantTypes("authorization_code","refresh_token")
+                .scopes("webclient","mobileclient")
+                .autoApprove(true)
         ;
         //clients.jdbc(dataSource);
 

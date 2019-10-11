@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
 
-@RestControllerAdvice
+//@RestControllerAdvice
 public class GlobalExceptionHandler {
 
     /**
@@ -25,7 +25,7 @@ public class GlobalExceptionHandler {
     {
         String message = exception.getMessage();
         System.out.println(message);
-        return Msg.failure("500","服务器异常，请联系管理员！");
+        return Msg.failure("500",message);
     }  
 
 }
