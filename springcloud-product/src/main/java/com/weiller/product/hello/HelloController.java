@@ -23,13 +23,25 @@ public class HelloController {
 
     @GetMapping("/hello")
     public Object hello(){
-        return new Msg("200","this is product app",null);
+        return new Msg("200","this is public product  app",null);
     }
 
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @DeleteMapping("/hello")
     public Object helloDel(){
         return new Msg("200","this is delete operation",null);
+    }
+
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @GetMapping("/hello/a")
+    public Object helloA(){
+        return new Msg("200","我是a资源",null);
+    }
+
+    @PreAuthorize("hasAuthority('ROLE_GUEST')")
+    @GetMapping("/hello/b")
+    public Object helloB(){
+        return new Msg("200","我是b资源",null);
     }
     /*
     @GetMapping("/hello/get")

@@ -1,36 +1,32 @@
 package com.weiller.auth.security.config;
 
 import com.weiller.auth.security.handler.FailureAuthenticationHandler;
+import com.weiller.auth.security.handler.SsoLogoutSuccessHandler;
 import com.weiller.auth.security.handler.SuccessAuthenticationHandler;
 import com.weiller.auth.security.service.MyUserDetailsService;
-import com.weiller.auth.social.MerryyouSpringSocialConfigurer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.core.GrantedAuthorityDefaults;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.social.security.SpringSocialConfigurer;
 
 /**
  * 定义用户ID、密码和角色
  */
 @Configuration
-@EnableWebSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
-//@EnableOAuth2Sso
+@Order(1)
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
+
 
     @Bean
     public PasswordEncoder bCryptPasswordEncoder(){
@@ -45,6 +41,9 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private SuccessAuthenticationHandler successHandler;
+
+    @Autowired
+    private SsoLogoutSuccessHandler ssoLogoutSuccessHandler;
 
     @Autowired
     MyUserDetailsService myUserDetailsService;
@@ -106,8 +105,8 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .and()
                 .apply(merryyouSpringSocialConfigurer)
                 .and()
-               // .logout().permitAll()
-               // .and()
+                .logout().addLogoutHandler(ssoLogoutSuccessHandler)
+                .and()
                 .csrf().disable()
                 ;
     }
