@@ -22,7 +22,6 @@ public class ClientWebsecurityConfigurer extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http.logout().logoutSuccessUrl(authServer+"/logout");
         http.authorizeRequests()
-                 .antMatchers("/hello/public","/" ).permitAll()
                 .anyRequest().authenticated()
         .and().csrf().disable();
     }
