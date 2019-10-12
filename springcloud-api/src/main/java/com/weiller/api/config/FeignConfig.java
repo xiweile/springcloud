@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Configuration
@@ -42,7 +43,8 @@ public class FeignConfig {
     public class MyMappingJackson2HttpMessageConverter extends MappingJackson2HttpMessageConverter {
         MyMappingJackson2HttpMessageConverter(){
             List<MediaType> mediaTypes = new ArrayList<>();
-            mediaTypes.add(MediaType.valueOf(MediaType.TEXT_HTML_VALUE + ";charset=UTF-8")); //关键
+           // mediaTypes.add(MediaType.valueOf(MediaType.TEXT_HTML_VALUE + ";charset=UTF-8")); //关键
+            mediaTypes = Collections.singletonList(MediaType.ALL);
             setSupportedMediaTypes(mediaTypes);
         }
     }

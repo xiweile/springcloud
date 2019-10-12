@@ -94,13 +94,12 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                             "/user/register",   //处理社交注册请求
                             "/social/info"     //获取当前社交用户信息
                      ).permitAll()
-                    .antMatchers("/user/all").hasRole("ADMIN")
                     .anyRequest().authenticated()
                 .and()
                 .formLogin()
                     .loginPage("/login")
-                 /*   .successHandler(successHandler)
-                    .failureHandler(failureHandler)*/
+                    .successHandler(successHandler)
+                    .failureHandler(failureHandler)
                     .permitAll()
                 .and()
                 .apply(merryyouSpringSocialConfigurer)

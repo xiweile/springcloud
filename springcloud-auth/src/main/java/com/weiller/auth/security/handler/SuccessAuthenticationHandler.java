@@ -21,7 +21,7 @@ public class SuccessAuthenticationHandler implements AuthenticationSuccessHandle
     private ObjectMapper objectMapper;
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-        logger.info("登录成功");
+        logger.info("登录成功,当前用户{}",authentication.getPrincipal());
         httpServletResponse.setContentType("application/json;charset=UTF-8");
         httpServletResponse.getWriter().write(objectMapper.writeValueAsString(Msg.success(authentication.getPrincipal())));
     }

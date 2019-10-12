@@ -2,12 +2,12 @@ package com.weiller.api.auth.service;
 
 import com.weiller.api.auth.entity.UserVo;
 import com.weiller.utils.model.Msg;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
+import feign.Headers;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Mono;
 
+@Headers({"Content-Type: application/json","Accept: application/json"})
 @FeignClient(value = "springcloud-auth",path = "auth")
 @Component
 public interface UserService {

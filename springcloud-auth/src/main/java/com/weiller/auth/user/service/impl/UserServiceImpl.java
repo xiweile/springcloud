@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @Service("iUserService")
 public class UserServiceImpl implements IUserService {
 
@@ -20,8 +22,8 @@ public class UserServiceImpl implements IUserService {
     @Autowired
     UserMapper userMapper;
 
-    public Flux<User> findAll(){
-        return Flux.fromIterable(userMapper.findAll());
+    public List<User> findAll(){
+        return userMapper.findAll() ;
     }
 
     public Flux<User> getByIds(Flux<Integer> ids){

@@ -5,13 +5,15 @@ import com.weiller.auth.user.entity.User;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 /**
  * 用户登陆信息类
  *
  */
 public interface IUserService {
 
-     Flux<User> findAll();
+     List<User> findAll();
 
      Flux<User> getByIds(Flux<Integer> ids);
 

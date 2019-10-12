@@ -17,6 +17,7 @@ import reactor.util.function.Tuple2;
 import reactor.util.function.Tuples;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -31,7 +32,7 @@ public class UserController implements UserService{
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    public Flux<User> getList() {
+    public List<User> getList() {
         return this.iUserService.findAll();
     }
 
