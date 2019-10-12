@@ -5,8 +5,12 @@ import com.weiller.auth.security.handler.SsoLogoutSuccessHandler;
 import com.weiller.auth.security.handler.SuccessAuthenticationHandler;
 import com.weiller.auth.security.service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.context.support.MessageSourceAccessor;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -15,10 +19,13 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.SpringSecurityMessageSource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.social.security.SpringSocialConfigurer;
+
+import java.util.Locale;
 
 /**
  * 定义用户ID、密码和角色
@@ -48,6 +55,9 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     @Autowired
     MyUserDetailsService myUserDetailsService;
 
+    @Autowired
+    MessageSource messageSource;
+
     @Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -66,17 +76,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-     /*   auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
-                .withUser("zhangsan")
-                .password(new BCryptPasswordEncoder().encode("zhangsan"))
-                .roles("USER")
-                .and()
-                .withUser("admin")
-                .password(new BCryptPasswordEncoder().encode("admin"))
-                .roles("ADMIN","USER");*/
-     //   auth.userDetailsService(myUserDetailsService).passwordEncoder(bCryptPasswordEncoder());
         auth.authenticationProvider(authenticationProvider());
-
     }
 
     @Override
@@ -121,5 +121,6 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     GrantedAuthorityDefaults grantedAuthorityDefaults() {
         return new GrantedAuthorityDefaults(""); // Remove the ROLE_ prefix
     }*/
+
 
 }
