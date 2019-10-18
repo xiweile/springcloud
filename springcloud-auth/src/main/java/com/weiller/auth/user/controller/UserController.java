@@ -16,6 +16,7 @@ import reactor.core.publisher.Mono;
 import reactor.util.function.Tuple2;
 import reactor.util.function.Tuples;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,13 +47,26 @@ public class UserController implements UserService{
     }
 
 
-    @RequestMapping("/user")
-    public Map<String,Object> user(OAuth2Authentication user){
+    @RequestMapping({ "/user", "/me" })
+    public Map<String,Object> user(Principal user){
+        //Principal 被oauth2拦截封装 为OAuth2Authentication
         Map<String,Object> userInfo = new HashMap<>();
-        userInfo.put("user",user.getUserAuthentication().getPrincipal());
-        userInfo.put("authorities", AuthorityUtils.authorityListToSet(user.getUserAuthentication().getAuthorities()));
+        userInfo.put("user",user.getName());
+        //userInfo.put("authorities", AuthorityUtils.authorityListToSet(user.getUserAuthentication().getAuthorities()));
         return userInfo;
     }
+
+    @RequestMapping("/userInfo")
+    public Map<String,Object> userInfo(Principal principal){
+        //在经OAuth2拦截后，是OAuth2Authentication
+        OAuth2Authentication authentication = (OAuth2Authentication) principal;
+
+        Map<String,Object> userInfo = new HashMap<>();
+        userInfo.put("user",authentication.getPrincipal());
+        userInfo.put("authorities", AuthorityUtils.authorityListToSet(authentication.getUserAuthentication().getAuthorities()));
+        return userInfo;
+    }
+
 
 
     //@PostMapping("/login")

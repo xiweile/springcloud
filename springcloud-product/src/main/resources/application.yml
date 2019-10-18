@@ -14,7 +14,6 @@ eureka:
 spring:
   application:
     name: springcloud-product
-
 ribbon:
   client:
     name: springcloud-auth
@@ -30,7 +29,14 @@ security:
         client-secret: 123456
         access-token-uri: ${auth-server}/oauth/token
         user-authorization-uri: ${auth-server}/oauth/authorize
+#        scope: read,write
+#        auto-approve-scopes: '.*'
    resource:
-        jwt:
-           key-uri: ${auth-server}/oauth/token_key
-        user-info-uri: ${auth-server}/user
+        user-info-uri: ${auth-server}/me
+        token-info-uri: ${auth-server}/oauth/check_token
+#        jwt:
+#           key-uri: ${auth-server}/oauth/token_key
+#           key-value: weiller
+logging:
+  level:
+    root: debug

@@ -11,6 +11,10 @@ spring:
     hikari:
       minimum-idle: 5
       maximum-pool-size: 20
+  redis:
+    host: 10.10.8.10
+    port: 6379
+    database: 2
 #  jpa:
 #    database: mysql
 #    show-sql: true
@@ -27,7 +31,6 @@ spring:
     suffix: .html
   #检查模板是否存在，然后再呈现
     check-template-location: true
-
 #Mybatis配置
 mybatis:
   mapper-locations: classpath:mapper/*.xml
@@ -48,3 +51,6 @@ mybatis:
 
 session.redis.duetime: 1 #单位分钟
 test.msg: 'hello 555'
+logging:
+  level:
+     root: debug

@@ -11,12 +11,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
+import org.springframework.web.client.RestTemplate;
 
 @EnableCircuitBreaker
 @EnableDiscoveryClient
 @SpringBootApplication
 @MapperScan("com.weiller.auth.user.dao")
-@EnableResourceServer
 //@RefreshScope
 public class AuthApplication {
 
@@ -32,5 +32,11 @@ public class AuthApplication {
 		messageSource.setDefaultEncoding("UTF-8");
 		//messageSource.setCacheSeconds(0);
 		return messageSource;
+	}
+
+
+	@Bean
+	public RestTemplate restTemplate(){
+		return  new RestTemplate();
 	}
 }

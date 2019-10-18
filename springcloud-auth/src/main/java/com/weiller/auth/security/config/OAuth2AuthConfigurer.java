@@ -3,14 +3,14 @@ package com.weiller.auth.security.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
-import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
-import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 import javax.sql.DataSource;
 
@@ -19,15 +19,21 @@ import javax.sql.DataSource;
  */
 @EnableAuthorizationServer
 @Configuration
-public class OAuth2Configurer extends AuthorizationServerConfigurerAdapter {
+public class OAuth2AuthConfigurer extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
     private DataSource dataSource;
 
+    @Autowired
+    AuthenticationManager authenticationManagerBean;
+
+    @Autowired
+    private RedisConnectionFactory redisConnectionFactory;
+
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security.allowFormAuthenticationForClients();
-        security.tokenKeyAccess("isAuthenticated()");
+        security.allowFormAuthenticationForClients()
+                .tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
     }
 
     /*
@@ -70,19 +76,43 @@ public class OAuth2Configurer extends AuthorizationServerConfigurerAdapter {
       */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.accessTokenConverter(jwtAccessTokenConverter());
-        endpoints.tokenStore(jwtTokenStore());
+        //endpoints.accessTokenConverter(jwtAccessTokenConverter()); // 用于jwt
+        endpoints.tokenStore(redisTokenStore())
+                .authenticationManager(authenticationManagerBean);
     }
 
     @Bean
+    public MyRedisTokenStore redisTokenStore() {
+        return new MyRedisTokenStore(redisConnectionFactory);//redis存储access_token
+    }
+
+    /**
+     * <p>注意，自定义TokenServices的时候，需要设置@Primary，否则报错，</p>
+     * @return
+     */
+/*    @Primary
+    @Bean
+    public DefaultTokenServices defaultTokenServices(){
+        DefaultTokenServices tokenServices = new DefaultTokenServices();
+        tokenServices.setTokenStore(redisTokenStore());
+        tokenServices.setSupportRefreshToken(true);
+        //tokenServices.setClientDetailsService(clientDetails());
+        // token有效期自定义设置，默认12小时
+        tokenServices.setAccessTokenValiditySeconds(60*60*12);
+        // refresh_token默认30天
+        tokenServices.setRefreshTokenValiditySeconds(60 * 60 * 24 * 7);
+        return tokenServices;
+    }*/
+
+   /* @Bean
     public JwtAccessTokenConverter  jwtAccessTokenConverter() {
         JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
-        jwtAccessTokenConverter.setSigningKey("cjs");
+        jwtAccessTokenConverter.setSigningKey("weiller");
         return  jwtAccessTokenConverter;
     }
 
     @Bean
     public JwtTokenStore  jwtTokenStore() {
         return new JwtTokenStore(jwtAccessTokenConverter());
-    }
+    }*/
 }
