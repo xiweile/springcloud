@@ -20,7 +20,7 @@ public class ClientWebsecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.logout().logoutSuccessUrl(authServer+"/logout");
+        http.logout().logoutSuccessUrl(authServer+"/exit");
         http.authorizeRequests()
                 .anyRequest().authenticated()
         .and().csrf().disable();

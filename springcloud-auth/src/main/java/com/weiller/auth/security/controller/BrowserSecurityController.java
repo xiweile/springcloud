@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.social.connect.Connection;
@@ -16,6 +17,8 @@ import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -46,6 +49,19 @@ public class BrowserSecurityController {
     public String loginPage(){
         return "login";
     }
+
+    @GetMapping("/exit")
+    public void exit(HttpServletRequest request, HttpServletResponse response) {
+        // token can be revoked here if needed
+        new SecurityContextLogoutHandler().logout(request, null, null);
+        try {
+            //sending back to client app
+            response.sendRedirect(request.getHeader("referer"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     /*
      * 当需要身份认证的时候，跳转过来
