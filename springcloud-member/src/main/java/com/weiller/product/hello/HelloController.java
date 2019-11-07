@@ -23,7 +23,7 @@ public class HelloController {
 
     @GetMapping("/hello")
     public Object hello(){
-        return new Msg("200","this is product app",null);
+        return new Msg("200","this is member app",null);
     }
 
     @DeleteMapping("/hello")
