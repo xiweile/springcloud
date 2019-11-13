@@ -11,12 +11,13 @@
 	<name>springcloud</name>
 	<description>base</description>
 	<modules>
-		<module>springcloud-api</module>
+		<module>mybatis-plus-generator</module>
 		<module>springcloud-utils</module>
+		<module>springcloud-api</module>
 		<module>springcloud-gateway</module>
 		<module>springcloud-registry</module>
-		<module>springcloud-auth</module>
 		<module>springcloud-config</module>
+		<module>springcloud-auth</module>
 		<module>springcloud-product</module>
 		<module>springcloud-member</module>
 	</modules>
@@ -37,7 +38,9 @@
 		<fastjson.version>1.2.13</fastjson.version>
 		<commons-io.version>2.4</commons-io.version>
 		<oauth2.version>2.3.4.RELEASE</oauth2.version>
-		<spring-social.version>2.0.0.M4</spring-social.version>
+		<spring-social.version>1.1.6.RELEASE</spring-social.version>
+
+		<mybatis-plus.version>3.0.7.1</mybatis-plus.version>
 	</properties>
 
 	<dependencyManagement>
@@ -49,17 +52,24 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-boot-starter</artifactId>
+				<version>${mybatis-plus.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-generator</artifactId>
+				<version>${mybatis-plus.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>3.9</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
 
 
 </project>

@@ -1,8 +1,10 @@
 package com.weiller.utils.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class Msg {
 
     private String code;
@@ -29,7 +31,7 @@ public class Msg {
         return new Msg("200","响应成功",data);
     }
 
-    public  static Msg failure(String code,String msg){
+    public  static Msg failure(String code, String msg){
         return new Msg(code,msg,null);
     }
 }

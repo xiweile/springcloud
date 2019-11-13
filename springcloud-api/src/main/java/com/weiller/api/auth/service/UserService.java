@@ -1,7 +1,6 @@
 package com.weiller.api.auth.service;
 
 import com.weiller.api.auth.entity.UserVo;
-import com.weiller.utils.model.Msg;
 import feign.Headers;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
@@ -25,5 +24,5 @@ public interface UserService {
     Object login(@RequestBody UserVo user);
 
     @GetMapping("/online")
-    Msg isOnline();
+    Object isOnline();
 }

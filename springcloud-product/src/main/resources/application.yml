@@ -14,6 +14,18 @@ eureka:
 spring:
   application:
     name: springcloud-product
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/demo?useSSL=false
+    username: root
+    password: xiweile
+    driverClassName: com.mysql.jdbc.Driver
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 20
+mybatis-plus:
+  mapper-locations: classpath:com/weiller/**/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #使用日志
 ribbon:
   client:
     name: springcloud-auth
@@ -39,4 +51,4 @@ security:
 #           key-value: weiller
 logging:
   level:
-    root: debug
+    root: info

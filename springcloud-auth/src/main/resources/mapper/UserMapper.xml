@@ -21,6 +21,7 @@
   <sql id="Base_Column_List">
     id, password, username, state
   </sql>
+
   <select id="findAll" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

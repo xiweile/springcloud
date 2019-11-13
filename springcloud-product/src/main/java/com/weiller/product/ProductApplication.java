@@ -1,5 +1,7 @@
 package com.weiller.product;
 
+import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -15,6 +17,7 @@ import org.springframework.web.client.RestTemplate;
 @EnableFeignClients(basePackages = "com.weiller.api")
 @EnableDiscoveryClient
 @SpringBootApplication(scanBasePackages = "com.weiller")
+@MapperScan("com.weiller.**.dao")
 public class ProductApplication {
 
 	//@Bean
@@ -26,4 +29,5 @@ public class ProductApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ProductApplication.class, args);
 	}
+
 }
