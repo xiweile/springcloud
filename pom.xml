@@ -11,7 +11,6 @@
 	<name>springcloud</name>
 	<description>base</description>
 	<modules>
-		<module>mybatis-plus-generator</module>
 		<module>springcloud-utils</module>
 		<module>springcloud-api</module>
 		<module>springcloud-gateway</module>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weiller.rest.dao.DjNsrxxMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.weiller.rest.model.DjNsrxx">
+        <id column="djxh" property="djxh" />
+        <result column="gdslx_dm" property="gdslxDm" />
+        <result column="ssdabh" property="ssdabh" />
+        <result column="nsrsbh" property="nsrsbh" />
+        <result column="nsrmc" property="nsrmc" />
+        <result column="kzztdjlx_dm" property="kzztdjlxDm" />
+        <result column="djzclx_dm" property="djzclxDm" />
+        <result column="fddbrxm" property="fddbrxm" />
+        <result column="fddbrsfzjlx_dm" property="fddbrsfzjlxDm" />
+        <result column="scjydz" property="scjydz" />
+        <result column="fddbrsfzjhm" property="fddbrsfzjhm" />
+        <result column="scjydzxzqhsz_dm" property="scjydzxzqhszDm" />
+        <result column="nsrzt_dm" property="nsrztDm" />
+        <result column="hy_dm" property="hyDm" />
+        <result column="zcdz" property="zcdz" />
+        <result column="zcdzxzqhsz_dm" property="zcdzxzqhszDm" />
+        <result column="jdxz_dm" property="jdxzDm" />
+        <result column="dwlsgx_dm" property="dwlsgxDm" />
+        <result column="gdghlx_dm" property="gdghlxDm" />
+        <result column="djjg_dm" property="djjgDm" />
+        <result column="djrq" property="djrq" />
+        <result column="zzjg_dm" property="zzjgDm" />
+        <result column="kqccsztdjbz" property="kqccsztdjbz" />
+        <result column="lrr_dm" property="lrrDm" />
+        <result column="lrrq" property="lrrq" />
+        <result column="xgr_dm" property="xgrDm" />
+        <result column="xgrq" property="xgrq" />
+        <result column="sjgsdq" property="sjgsdq" />
+        <result column="zgswj_dm" property="zgswjDm" />
+        <result column="zgswskfj_dm" property="zgswskfjDm" />
+        <result column="ssgly_dm" property="ssglyDm" />
+        <result column="fjmqybz" property="fjmqybz" />
+        <result column="swdjblbz" property="swdjblbz" />
+        <result column="sjtb_sj" property="sjtbSj" />
+        <result column="nsrbm" property="nsrbm" />
+        <result column="yxbz" property="yxbz" />
+        <result column="shxydm" property="shxydm" />
+        <result column="pgjg_dm" property="pgjgDm" />
+        <result column="gszxrq" property="gszxrq" />
+        <result column="nsrztlx_dm" property="nsrztlxDm" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        djxh, gdslx_dm, ssdabh, nsrsbh, nsrmc, kzztdjlx_dm, djzclx_dm, fddbrxm, fddbrsfzjlx_dm, scjydz, fddbrsfzjhm, scjydzxzqhsz_dm, nsrzt_dm, hy_dm, zcdz, zcdzxzqhsz_dm, jdxz_dm, dwlsgx_dm, gdghlx_dm, djjg_dm, djrq, zzjg_dm, kqccsztdjbz, lrr_dm, lrrq, xgr_dm, xgrq, sjgsdq, zgswj_dm, zgswskfj_dm, ssgly_dm, fjmqybz, swdjblbz, sjtb_sj, nsrbm, yxbz, shxydm, pgjg_dm, gszxrq, nsrztlx_dm
+    </sql>
+
+</mapper>

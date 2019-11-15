@@ -165,17 +165,10 @@
 			<plugin>
 				<groupId>com.weiller</groupId>
 				<artifactId>mybatis-plus-generator-maven-plugin</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
+				<version>1.0.0</version>
 				<configuration>
 					<configurationFile>${basedir}/src/main/resources/generator/mp-code-generator-config.yaml</configurationFile>
 				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>com.baomidou</groupId>
-						<artifactId>mybatis-plus-extension</artifactId>
-						<version>3.0.7.1</version>
-					</dependency>
-				</dependencies>
 			</plugin>
         </plugins>
 	</build>

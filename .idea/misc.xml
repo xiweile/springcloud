@@ -7,6 +7,7 @@
         <option value="$PROJECT_DIR$/springcloud-gateway/pom.xml" />
         <option value="$PROJECT_DIR$/identity/pom.xml" />
         <option value="$PROJECT_DIR$/mp-code-generator/pom.xml" />
+        <option value="$PROJECT_DIR$/../github/mybatis-plus-generator/pom.xml" />
       </list>
     </option>
   </component>
