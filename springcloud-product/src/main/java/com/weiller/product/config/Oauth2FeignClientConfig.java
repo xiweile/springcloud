@@ -1,6 +1,7 @@
 package com.weiller.product.config;
 
 import feign.RequestInterceptor;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.security.oauth2.client.feign.OAuth2FeignRequestInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,6 +36,7 @@ public class Oauth2FeignClientConfig {
 
 
     @Bean
+    @LoadBalanced
     public OAuth2RestTemplate oauth2RestTemplate(OAuth2ClientContext oauth2ClientContext,
                                                  OAuth2ProtectedResourceDetails details) {
         OAuth2RestTemplate oAuth2RestTemplate = new OAuth2RestTemplate(details, oauth2ClientContext);

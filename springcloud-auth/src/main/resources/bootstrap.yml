@@ -8,18 +8,19 @@ spring:
     name: springcloud-auth
   profiles:
     active: dev
-#  cloud:
-#    config:
-#      label: develop
-#   #   uri: http://localhost:8888
-#      discovery:
-#        enabled: false
-#        service-id: springcloud-config
-#      fail-fast: true
-#    bus:
-#      enabled: false
-#  kafka:
-#    bootstrap-servers: localhost:9092
+  cloud:
+    config:
+      enabled: false
+      label: develop
+   #   uri: http://localhost:8888
+      discovery:
+        enabled: false
+        service-id: springcloud-config
+      fail-fast: true
+    bus:
+      enabled: false
+  kafka:
+    bootstrap-servers: localhost:9092
 eureka:
   client:
     service-url:

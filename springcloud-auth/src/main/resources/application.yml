@@ -15,15 +15,6 @@ spring:
     host: 10.10.8.10
     port: 6379
     database: 2
-#  jpa:
-#    database: mysql
-#    show-sql: true
-#    hibernate:
-#      ddl-auto: update
-#      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
-#    properties:
-#      hibernate:
-#        dialect: org.hibernate.dialect.MySQL5Dialect
   #视图 这是默认的配置
   thymeleaf:
     cache: false

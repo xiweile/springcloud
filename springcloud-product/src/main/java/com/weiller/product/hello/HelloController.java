@@ -55,9 +55,9 @@ public class HelloController {
 
     @GetMapping("/remote/user/list")
     public Object getUser(){
-       // return userService.getList();
+        // return userService.getList();
         log.info("accessToken:{}",oAuth2RestTemplate.getAccessToken());
-        return  oAuth2RestTemplate.getForEntity("http://localhost:8001/auth/user/all", String.class);
+        return  oAuth2RestTemplate.getForEntity("http://springcloud-auth/auth/user/all", String.class);
     }
 
     @GetMapping("/remote/online")
