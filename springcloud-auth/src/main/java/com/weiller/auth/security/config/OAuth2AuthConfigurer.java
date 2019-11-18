@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -39,7 +38,9 @@ public class OAuth2AuthConfigurer extends AuthorizationServerConfigurerAdapter {
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security.allowFormAuthenticationForClients()
-                .tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
+                .tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()")
+
+        ;
     }
 
     /*
@@ -49,7 +50,7 @@ public class OAuth2AuthConfigurer extends AuthorizationServerConfigurerAdapter {
     */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.inMemory()
+ /*       clients.inMemory()
                 .withClient("product")
                 .redirectUris("http://localhost:8002/login")
                 .secret(new BCryptPasswordEncoder().encode("123456"))
@@ -63,15 +64,8 @@ public class OAuth2AuthConfigurer extends AuthorizationServerConfigurerAdapter {
                 .authorizedGrantTypes("authorization_code","refresh_token")
                 .scopes("webclient","mobileclient")
                 .autoApprove(true)
-        .and()
-                .withClient("postman")
-                .redirectUris("https://www.getpostman.com/oauth2/callback")
-                .secret(new BCryptPasswordEncoder().encode("123456"))//,"password","client_credentials"
-                .authorizedGrantTypes("authorization_code","refresh_token")
-                .scopes("webclient","mobileclient")
-                .autoApprove(true)
-        ;
-        //clients.jdbc(dataSource);
+        ;*/
+        clients.jdbc(dataSource);
 
     }
 
@@ -84,7 +78,9 @@ public class OAuth2AuthConfigurer extends AuthorizationServerConfigurerAdapter {
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         //endpoints.accessTokenConverter(jwtAccessTokenConverter()); // 用于jwt
         endpoints.tokenStore(redisTokenStore )
-                .authenticationManager(authenticationManagerBean);
+                .authenticationManager(authenticationManagerBean)
+                //.tokenEnhancer(new CustomTokenEnhancer())
+        ;
     }
 
     @Bean

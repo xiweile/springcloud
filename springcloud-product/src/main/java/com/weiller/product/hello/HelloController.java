@@ -57,6 +57,13 @@ public class HelloController {
     public Object getUser(){
         // return userService.getList();
         log.info("accessToken:{}",oAuth2RestTemplate.getAccessToken());
+       // return  oAuth2RestTemplate.getForEntity("http://springcloud-auth/auth/user/all", String.class);
+      return userService.getList();
+    }
+    @GetMapping("/remote/user/list2")
+    public Object getUser2(){
+        // return userService.getList();
+        log.info("accessToken:{}",oAuth2RestTemplate.getAccessToken());
         return  oAuth2RestTemplate.getForEntity("http://springcloud-auth/auth/user/all", String.class);
     }
 
