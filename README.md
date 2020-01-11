@@ -1,5 +1,14 @@
 # springcloud应用基础框架
 
+功能清单
+ - eureka注册中心
+ - springcloud-config配置中心
+ - zuul 网关
+ - 基于oauth2 的单点登录
+ - 基于springsecurity权限控制
+ - bus-kafka配置消息通知机制
+ - feign 接口调用
+
 
 ```sql
 -- Table oauth客户端配置信息表
